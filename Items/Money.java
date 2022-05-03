@@ -1,4 +1,8 @@
-public class Money extends Item{
+package Items;
+
+import Items.Item;
+
+public class Money extends Item {
     private int count = 100;
     private boolean isSellable = false;
 

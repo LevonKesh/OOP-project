@@ -1,7 +1,9 @@
+package Items;
+
 public class Item {
     private String name;
     private String description;
-    private boolean isSellable = true;
+    private static boolean isSellable = true;
 
     public Item(String name, String description){
         this.name = name;
