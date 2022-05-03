@@ -1,0 +1,114 @@
+* Act 1
+
+Dwarf sends to an adventure
+
+On the way you see two dead horses.
+
+ChooseOne:
+  1. Come close (Results in a coming preemptive strike)
+  2. Inspect  (No preemptive strike)
+
+Battle1:
+
+
+Sees a cave in distance, enters.
+
+
+Encounter 2 goblin, 1 wolf.
+
+Eavesdrop goblin talking about boss Clarg about raiding caravans till they catch ...
+
+ChooseOne: 
+  1. Battle
+  2. Stealth
+  3. (Optional) Scare.
+
+
+Battle2:
+
+
+Proceed into cave.
+
+Encounter Clarg, confrontation.
+
+Battle3:
+
+Find scroll when searching through clarg's body
+
+Scroll reads that Clarg was ordered to catch Dumbar. 
+
+ChooseOne: 
+  1. Search around more.
+      - Items
+  2. Proceed.
+
+
+*Act 2:
+
+Then you reach to the OG destination city (Fandoin)
+
+
+When entering the local Inn, hear news about the local shrine getting raided and a halfling whose family is getting attacked
+
+ChooseOne:
+  1. Shop
+  2. Head towards shrine.
+  3. Head towards halfling's house
+
+
+If Shrine:
+  You enter the shrine, see the priestess.
+
+  2 Orcs and 3 Cultists.
+
+  Battle4:
+
+  Find key from cultists and scroll that reads about in upcoming invasion onto town
+
+  Return to Inn, tell the person at line 51 that the situation with shrine is handled.
+
+
+
+ChooseOne: 
+  1. Shop
+  2. THe other task at Line 53's ChooseOne
+
+If Halfling:
+  You head to the halfing's house and see a tunnel in it.
+
+
+  Upon trying to get into that tunnel, you encounter the cyclops nothik
+
+  Nothink attacks
+
+  Battle4:
+
+  Proceed into the tunnel, into another room, encountering the Halfling's parent's corpses
+
+  From inside the room you hear a story about a resurrected god.
+  
+  Enter the room using key from shrine.
+
+  If charisma > needed:
+    Persuade mage into giving up and fighting the dragon yourself.
+  Else
+    Fight them
+
+  Find out about thunder tree
+
+
+* Act 3
+
+  Head to thunder tree to fight the resurrected god dragon.
+
+  Meet a druid that tells a story and gives an OP item
+
+  Upon reaching thunder tree you see the dragon.
+
+  Battle5:
+  
+
+  The end.
+
+  
+
