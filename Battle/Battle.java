@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 public class Battle {
     final int boardDimension = 10;
-    private ArrayList<Cell> board;
+    private final Board battleBoard = new Board();
 
-    public Battle(ArrayList<Cell> board){
-        this.board = board;
+    public Battle(Entity[] participants){
+        battleBoard.putParticipants(participants);
     }
 
-    public ArrayList<Cell> getBoard() {
-        return board;
+    public Board getBoard() {
+        return battleBoard;
     }
 
-    public ArrayList<Entity> getEntities(){
-        ArrayList<Entity> entities = new ArrayList<>();
-        for (Cell cell: this.board)
-            if (cell.getEntity() != null) entities.add(cell.getEntity());
-        return entities;
+    public ArrayList<Entity> getParticipants() {
+        return battleBoard.getParticipants();
     }
 
+    public void showMoves(Entity entity){
+        //TODO Print moves with javafx
+    }
 }

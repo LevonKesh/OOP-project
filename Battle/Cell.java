@@ -24,4 +24,8 @@ public class Cell {
         this.entity = entity;
         this.occupied = true;
     }
+
+    public boolean isOccupied() {
+        return occupied;
+    }
 }
