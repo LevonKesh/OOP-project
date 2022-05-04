@@ -6,14 +6,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private static final int dimension = 5;
-    private Cell[][] board;
+    private static final int dimension = 10;
+    private final Cell[][] board = new Cell[dimension][dimension];
 
     public Board() {
-        board = new Cell[10][10];
+        for (int row = 0; row < board.length; row++) {
+            for (int column = 0; column < board.length; column++) {
+                board[row][column] = new Cell();
+            }
+        }
     }
 
-    public void putParticipants(Entity[] participants) {
+    public Cell getCell(int row, int column){
+        return board[row][column];
+    }
+    public void putParticipantsRandomly(Entity[] participants) {
         Random generator = new Random();
         for (Entity entity : participants) {
             int x;
@@ -32,6 +39,10 @@ public class Board {
             for (Cell cell : row)
                 if (cell.getEntity() != null) entities.add(cell.getEntity());
         return entities;
+    }
+
+    public static int getDimension() {
+        return dimension;
     }
 
     public void show() {

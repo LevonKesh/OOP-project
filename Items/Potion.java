@@ -4,10 +4,10 @@ import Items.Item;
 
 public class Potion extends Item {
     private int hitPoint;
-    private static boolean isSellable = true;
+    private static final boolean isSellable = true;
 
     public Potion(String name, String description, int hitPoint){
-        super(name, description);
+        super(name, description,1);
         this.hitPoint = hitPoint;
     }
 

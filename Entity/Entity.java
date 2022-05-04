@@ -13,7 +13,7 @@ public class Entity {
     private int XP;
 
     private Action[] actions;
-    private Inventory inventory;
+    //private Inventory inventory;
     private String description;
 
 

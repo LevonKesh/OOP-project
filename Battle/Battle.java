@@ -5,19 +5,27 @@ import Entity.Entity;
 import java.util.ArrayList;
 
 public class Battle {
-    final int boardDimension = 10;
-    private final Board battleBoard = new Board();
+    private static boolean initiated = true;
+    private final Board board = new Board();
 
     public Battle(Entity[] participants){
-        battleBoard.putParticipants(participants);
+        board.putParticipantsRandomly(participants);
+    }
+
+    public static boolean isInitiated() {
+        return initiated;
+    }
+
+    public static void setInitiated(boolean initiated) {
+        Battle.initiated = initiated;
     }
 
     public Board getBoard() {
-        return battleBoard;
+        return board;
     }
 
     public ArrayList<Entity> getParticipants() {
-        return battleBoard.getParticipants();
+        return board.getParticipants();
     }
 
     public void showMoves(Entity entity){
