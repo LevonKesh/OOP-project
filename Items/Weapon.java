@@ -8,7 +8,7 @@ public class Weapon extends Item {
     private static boolean isSellable = true;
 
     public Weapon(String name, String description, int damage, boolean isRanged){
-        super(name, description);
+        super(name, description,1);
         this.damage = damage;
         this.isRanged = isRanged;
     }
