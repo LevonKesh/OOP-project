@@ -1,5 +1,7 @@
 package Items;
 
+import java.util.Objects;
+
 public class Item implements Cloneable {
     private String name;
     private String description;
@@ -34,4 +36,13 @@ public class Item implements Cloneable {
             return null;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(name, item.name) && Objects.equals(description, item.description);
+    }
+
 }
