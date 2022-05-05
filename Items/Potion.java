@@ -18,4 +18,8 @@ public class Potion extends Item {
     public void setHitPoint(int hitPoint){
         this.hitPoint = hitPoint;
     }
+
+    public Potion clone() {
+        return (Potion) super.clone();
+    }
 }

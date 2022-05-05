@@ -16,7 +16,8 @@ public class Entity {
     private int XP;
 
     private Action[] actions;
-    private ArrayList<Item> inventory;
+    private Item[] inventory;
+    private int[] inventoryCount;
 
     public Entity() {
         name = null;
@@ -33,7 +34,7 @@ public class Entity {
 
     public Entity(String name, String size, int armorClass, int hitPoints, int speed, Skill skills,
 
-                  double challenge, int XP, Action[] actions, ArrayList<Item> inventory) {
+                  double challenge, int XP, Action[] actions, Item[] inventory) {
         this.name = name;
         this.size = name;
         this.armorClass = armorClass;
@@ -46,14 +47,17 @@ public class Entity {
         this.inventory = inventory;
     }
 
-    public ArrayList<Item> getInventory() {
-        ArrayList<Item> newInventory = (ArrayList<Item>) inventory.clone();
-        return newInventory;
+    public Item[] getInventory() {
+        Item[] newInventory = new Item[this.inventory.length];
+        for (int i = 0; i < this.inventory.length; i++) {
+                newInventory[i] = this.inventory[i].clone();
+        }
     }
 
     public void addToInventory(Item newItem) {
         if (inventory.contains(newItem)) {
             int index = inventory.indexOf(newItem);
+
         }
     }
 }
