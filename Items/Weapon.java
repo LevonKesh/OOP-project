@@ -28,4 +28,8 @@ public class Weapon extends Item {
     public void setISRanged(boolean isRanged){
         this.isRanged = isRanged;
     }
+
+    public Weapon clone() {
+        return (Weapon) super.clone();
+    }
 }

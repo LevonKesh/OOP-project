@@ -6,4 +6,8 @@ public class Action {
     public Action() {
         name = null;
     }
+
+    public Action(Action that) {
+        this.name = that.name;
+    }
 }
