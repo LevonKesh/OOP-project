@@ -16,17 +16,14 @@ public class BoardGUI {
         int boardCol =0;
         for (int i = 0; i < paneSize; i+= cellSize) {
             for (int j = 0; j < paneSize; j+= cellSize) {
+                Rectangle r = new Rectangle(i,j,cellSize,cellSize);
+                r.setStroke(Color.WHITE);
                 if (board.getCell(boardRow,boardCol).isOccupied()){
-                    Rectangle r = new Rectangle(i,j,cellSize,cellSize);
                     r.setFill(Color.RED);
-                    r.setStroke(Color.WHITE);
-                    pane.getChildren().add(r);
-                }else {
-                    Rectangle r = new Rectangle(i,j,cellSize,cellSize);
+                } else {
                     r.setFill(Color.BLACK);
-                    r.setStroke(Color.WHITE);
-                    pane.getChildren().add(r);
                 }
+                pane.getChildren().add(r);
                 boardCol++;
             }
             boardRow++;

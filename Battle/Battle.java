@@ -5,7 +5,7 @@ import Entity.Entity;
 import java.util.ArrayList;
 
 public class Battle {
-    private static boolean initiated = true;
+    private static boolean initiated = false;
     private final Board board = new Board();
 
     public Battle(Entity[] participants){
