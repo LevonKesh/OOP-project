@@ -1,11 +1,16 @@
 package Entity;
 
 import java.util.ArrayList;
+
+import AI.AI_Constants;
+import Actions.Spell;
 import Items.*;
 
-public class Entity {
+public class Entity implements AI_Constants {
     private String name;
-    private String size;
+
+    private AItype entityType;
+
     private int armorClass;
     private int hitPoints;
     private int speed;
@@ -15,13 +20,12 @@ public class Entity {
     private double challenge;
     private int XP;
 
-    private Action[] actions;
+    private Spell[] spells;
     private ArrayList<Item> inventory;
     private ArrayList<Integer> inventoryCount;
 
     public Entity() {
         name = null;
-        size = null;
         armorClass = 0;
         hitPoints = 0;
         speed = 0;
@@ -32,7 +36,7 @@ public class Entity {
         inventory = null;
     }
 
-    public Entity(String name, String size, int armorClass, int hitPoints, int speed, Skill skills,
+    public Entity(String name, int armorClass, int hitPoints, int speed, Skill skills,
                   double challenge, int XP, Action[] actions, ArrayList<Item> inventory) {
         this.name = name;
         this.size = name;
@@ -46,10 +50,14 @@ public class Entity {
         this.inventory = inventory;
     }
 
+    public AItype getEntityType() {
+        return this.entityType;
+    }
+
     public ArrayList<Item> getInventory() {
-        ArrayList<Item> newInventory = new ArrayList<Item>;
+        ArrayList<Item> newInventory = new ArrayList<Item>();
         for (int i = 0; i < this.inventory.size(); i++) {
-                newInventory.set(i, this.inventory.get(i).clone());
+            newInventory.set(i, this.inventory.get(i).clone());
         }
         return newInventory;
     }
@@ -67,8 +75,7 @@ public class Entity {
         if (this.inventory.contains(newItem)) {
             int index = this.inventory.indexOf(newItem);
             this.inventoryCount.set(index, this.inventoryCount.get(index) + 1);
-        }
-        else {
+        } else {
             this.inventory.add(newItem);
             this.inventoryCount.add(1);
         }
@@ -82,30 +89,46 @@ public class Entity {
                 this.inventory.remove(index);
                 this.inventoryCount.remove(index);
             }
-        }
-        else {
-            System.out.println("No such item in inventory."); // Fixme: May be written as an exception needs a double check
+        } else {
+            System.out.println("No such item in inventory."); // Fixme: May be needs to be written as an exception needs a double check
         }
     }
 
-    public Action[] getActions() {
-        Action[] newActions = new Action[this.actions.length];
-        for (int i = 0; i < this.actions.length; i++) {
-            newActions[i] = new Action(this.actions[i]);
+    public ArrayList<Weapon> getWeapons() {
+        ArrayList<Weapon> newWeapons = new ArrayList<Weapon>();
+        for (Item i : this.inventory) {
+            if (i.getClass() == Weapon.class) {
+                newWeapons.add((Weapon) i);
+            }
         }
-        return newActions;
+        return newWeapons;
+    }
+    // todo: needs get melee weapons and get ranged weapons methods
+
+    public Weapon getRandomWeapon() {
+        ArrayList<Weapon> weapons = getWeapons();
+        int index = (int) (Math.random() * weapons.size());
+        return weapons.get(index);
     }
 
-    public Action getRandomAction() {
-        int index = (int) (Math.random() * this.actions.length);
-        return new Action(this.actions[index]);
+    public Spell[] getSpells() {
+        Spell[] newSpells = new Spell[spells.length];
+        for (int i = 0; i < spells.length; i++) {
+            newSpells[i] = new Spell(spells[i]);
+        }
+        return newSpells;
     }
+
+    public Spell getRandomSpell() {
+        int index = (int) (Math.random() * spells.length);
+        return spells[index];
+    }
+
 
     public boolean checkForPotion() {
-        if(this.inventory.contains(new Item("Potion", "Potion description"))) { // ToDo: needs concrete name and description for potion
+        if (this.inventory.contains(new Item("Potion", "Potion description"))) { // ToDo: needs concrete name and description for potion
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public void usePotion() {
