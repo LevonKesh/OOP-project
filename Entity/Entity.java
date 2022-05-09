@@ -3,24 +3,23 @@ package Entity;
 import java.util.ArrayList;
 
 import AI.AI_Constants;
-import Actions.Spell;
-import Items.*;
+import ItemsAndSpells.*;
 
 public class Entity implements AI_Constants {
     private String name;
-
-    private AItype entityType;
 
     private int armorClass;
     private int hitPoints;
     private int speed;
 
-    private Skill skills;
 
-    private double challenge;
-    private int XP;
+    private int strength;
+    private int dexterity;
+    private int constitution;
+    private int intelligence;
+    private int wisdom;
+    private int charisma;
 
-    private Spell[] spells;
     private ArrayList<Item> inventory;
     private ArrayList<Integer> inventoryCount;
 
@@ -28,31 +27,102 @@ public class Entity implements AI_Constants {
         name = null;
         armorClass = 0;
         hitPoints = 0;
-        speed = 0;
-        skills = null;
-        challenge = 0;
-        XP = 0;
-        actions = null;
+        speed = 4;
+        charisma = 10;
+        dexterity = 10;
+        constitution = 10;
+        intelligence = 10;
+        strength = 10;
+        wisdom = 10;
         inventory = null;
+        inventoryCount = null;
     }
 
-    public Entity(String name, int armorClass, int hitPoints, int speed, Skill skills,
-                  double challenge, int XP, Action[] actions, ArrayList<Item> inventory) {
+    public Entity(String name, int armorClass, int hitPoints, int speed,
+                  int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma,
+                  ArrayList<Item> inventory, ArrayList<Integer> inventoryCount) {
         this.name = name;
-        this.size = name;
         this.armorClass = armorClass;
         this.hitPoints = hitPoints;
         this.speed = speed;
-        this.skills = skills;
-        this.challenge = challenge;
-        this.XP = XP;
-        this.actions = actions;
+        this.charisma = charisma;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.intelligence = intelligence;
+        this.strength = strength;
+        this.wisdom = wisdom;
         this.inventory = inventory;
+        this.inventoryCount = inventoryCount;
     }
 
-    public AItype getEntityType() {
-        return this.entityType;
+    public String getName() {
+        return this.name;
     }
+
+    public int getArmorClass() {
+        return this.armorClass;
+    }
+
+    public int getHitPoints() {
+        return this.hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public int getSpeed() {
+        return this.speed;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public int getCharisma() {
+        return charisma;
+    }
+
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getWisdom() {
+        return wisdom;
+    }
+
 
     public ArrayList<Item> getInventory() {
         ArrayList<Item> newInventory = new ArrayList<Item>();
@@ -63,13 +133,8 @@ public class Entity implements AI_Constants {
     }
 
     public ArrayList<Integer> getInventoryCount() {
-//        ArrayList<Integer> newInventory = new ArrayList<Integer>;
-//        for (int i = 0; i < this.inventoryCount.size(); i++) {
-//            newInventory.set(i, this.inventoryCount.get(i));
-//        }
         return (ArrayList<Integer>) this.inventoryCount.clone();
     }
-
 
     public void addToInventory(Item newItem) {
         if (this.inventory.contains(newItem)) {
@@ -101,42 +166,47 @@ public class Entity implements AI_Constants {
                 newWeapons.add((Weapon) i);
             }
         }
+        newWeapons.sort(null);
         return newWeapons;
     }
-    // todo: needs get melee weapons and get ranged weapons methods
+
+    public ArrayList<Weapon> getMeleeWeapons() {
+        ArrayList<Weapon> meleeWeapons = new ArrayList<Weapon>();
+        for (Weapon i : getWeapons()) {
+            if (!(i.getIsRanged())) {
+                meleeWeapons.add(i);
+            }
+        }
+        return meleeWeapons;
+    }
+
+    public ArrayList<Weapon> getRangedWeapons() {
+        ArrayList<Weapon> rangedWeapons = new ArrayList<Weapon>();
+        for (Weapon i : getWeapons()) {
+            if (i.getIsRanged()) {
+                rangedWeapons.add(i);
+            }
+        }
+        return rangedWeapons;
+    }
+
+    public Weapon getWeaponWithMaxDamage() {
+        ArrayList<Weapon> weapons = getWeapons();
+        return weapons.get(0).clone();
+    }
+
+    public Weapon getWeaponWithMaxDamage(ArrayList<Weapon> weaponList) {
+        return weaponList.get(0).clone();
+    }
 
     public Weapon getRandomWeapon() {
         ArrayList<Weapon> weapons = getWeapons();
         int index = (int) (Math.random() * weapons.size());
-        return weapons.get(index);
+        return weapons.get(index).clone();
     }
 
-    public Spell[] getSpells() {
-        Spell[] newSpells = new Spell[spells.length];
-        for (int i = 0; i < spells.length; i++) {
-            newSpells[i] = new Spell(spells[i]);
-        }
-        return newSpells;
+    public Weapon getRandomWeapon(ArrayList<Weapon> weaponList) {
+        int index = (int) (Math.random() * weaponList.size());
+        return weaponList.get(index).clone();
     }
-
-    public Spell getRandomSpell() {
-        int index = (int) (Math.random() * spells.length);
-        return spells[index];
-    }
-
-
-    public boolean checkForPotion() {
-        if (this.inventory.contains(new Item("Potion", "Potion description"))) { // ToDo: needs concrete name and description for potion
-            return true;
-        } else return false;
-    }
-
-    public void usePotion() {
-        if (checkForPotion()) {
-            takeFromInventory(new Item("Potion", "Potion description")); // ToDo: needs concrete name and description for potion
-            this.hitPoints += 50;
-        }
-    }
-
-
 }

@@ -1,6 +1,6 @@
-//package Items; fixme
+//package ItemsAndSpells; fixme
 //
-//import Items.Item; todo
+//import ItemsAndSpells.Item; todo
 //
 //public class Money extends Item {
 //    private boolean isSellable = false;

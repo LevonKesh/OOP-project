@@ -1,4 +1,4 @@
-package Items;
+package ItemsAndSpells;
 
 import java.util.Objects;
 

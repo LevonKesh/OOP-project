@@ -1,6 +1,6 @@
-//package Items;
+//package ItemsAndSpells;
 //
-//import Items.Item;
+//import ItemsAndSpells.Item;
 //
 //public class Potion extends Item {
 //    private int hitPoint;
