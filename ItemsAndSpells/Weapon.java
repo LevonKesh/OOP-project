@@ -5,8 +5,8 @@ public class Weapon extends Item implements Comparable<Weapon>{
     private boolean isRanged = false;
     private static boolean isSellable = true;
 
-    public Weapon(String name, String description, int damage, boolean isRanged){
-        super(name, description);
+    public Weapon(String name, String description, int value, int damage, boolean isRanged){
+        super(name, description, value);
         this.damage = damage;
         this.isRanged = isRanged;
     }

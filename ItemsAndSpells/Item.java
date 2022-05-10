@@ -5,11 +5,13 @@ import java.util.Objects;
 public class Item implements Cloneable {
     private String name;
     private String description;
+    private int value;
     private static boolean isSellable = true;
 
-    public Item(String name, String description) {
+    public Item(String name, String description, int value) {
         this.name = name;
         this.description = description;
+        this.value = value;
     }
 
 
@@ -27,6 +29,22 @@ public class Item implements Cloneable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public static boolean isSellable() {
+        return isSellable;
+    }
+
+    public static void setIsSellable(boolean isSellable) {
+        Item.isSellable = isSellable;
     }
 
     public Item clone(){
