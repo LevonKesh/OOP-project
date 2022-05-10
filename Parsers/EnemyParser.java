@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class EnemyParser {
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private static ArrayList<Enemy> enemies = new ArrayList<>();
 
     public void parseDatabase() {
         Scanner inputStream = null;
@@ -59,9 +59,21 @@ public abstract class EnemyParser {
             }else{
                 enemies.add(new Enemy(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount, XP,enemyType));
             }
-
-
+            inputStream.nextLine();
         }
+    }
+
+    public static ArrayList<Enemy> getSelectedEnemies(String... names) {
+        ArrayList<Enemy> selectedEnemies = new ArrayList<>();
+
+        for (int i = 0; i < names.length; i++){
+            for (int j = 0; j < enemies.size(); j++){
+                if (names[i].equals(enemies.get(j).getName()))
+                    selectedEnemies.add(enemies.get(j).clone());
+            }
+        }
+
+        return selectedEnemies;
     }
 
 }

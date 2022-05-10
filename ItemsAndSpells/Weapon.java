@@ -1,6 +1,6 @@
 package ItemsAndSpells;
 
-public class Weapon extends Item implements Comparable<Weapon>, Cloneable{
+public class Weapon extends Item implements Comparable<Weapon>{
     private int damage;
     private boolean isRanged = false;
     private static boolean isSellable = true;
