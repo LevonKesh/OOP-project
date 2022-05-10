@@ -1,14 +1,12 @@
-package Items;
+package ItemsAndSpells;
 
-import Items.Item;
-
-public class Weapon extends Item {
+public class Weapon extends Item implements Comparable<Weapon>{
     private int damage;
     private boolean isRanged = false;
     private static boolean isSellable = true;
 
-    public Weapon(String name, String description, int damage, boolean isRanged){
-        super(name, description);
+    public Weapon(String name, String description, int value, int damage, boolean isLootable, boolean isRanged){
+        super(name, description, value, isLootable);
         this.damage = damage;
         this.isRanged = isRanged;
     }
@@ -25,8 +23,12 @@ public class Weapon extends Item {
         this.damage = damage;
     }
 
-    public void setISRanged(boolean isRanged){
+    public void setIsRanged(boolean isRanged){
         this.isRanged = isRanged;
+    }
+
+    public int compareTo(Weapon other) {
+        return this.damage - other.getDamage();
     }
 
     public Weapon clone() {

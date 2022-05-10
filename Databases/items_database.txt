@@ -1,0 +1,11 @@
+Coins; Golden coins of old Pheldanor that are used commonly on the island of Brandor
+1;  true
+
+Healing Potion; Healing potion made by the priests from the shrine of Artesha
+50;  true
+
+Scroll From Klarg; Description of the scroll
+1; false
+
+Scroll From Mage; Description of the scroll
+1; false

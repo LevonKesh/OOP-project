@@ -1,0 +1,13 @@
+String name, String description, SpellType spellType, int value
+
+Frost Hands; need to add later
+ATTACK; 9
+
+Fireball; need to add later
+ATTACK; 12
+
+Lightning; need to add later
+ATTACK; 17
+
+Healing; need to add later
+DEFENCE; 15

@@ -1,15 +1,19 @@
-package Items;
+package ItemsAndSpells;
 
 import java.util.Objects;
 
 public class Item implements Cloneable {
     private String name;
     private String description;
-    private static boolean isSellable = true;
+    private int value;
+    private boolean isLootable;
+    private boolean isSellable = true;
 
-    public Item(String name, String description) {
+    public Item(String name, String description, int value, boolean isLootable) {
         this.name = name;
         this.description = description;
+        this.value = value;
+        this.isLootable = isLootable;
     }
 
 
@@ -27,6 +31,26 @@ public class Item implements Cloneable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public boolean isLootable() {
+        return isLootable;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public boolean isSellable() {
+        return isSellable;
+    }
+
+    public void setIsSellable(boolean isSellable) {
+        this.isSellable = isSellable;
     }
 
     public Item clone(){

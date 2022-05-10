@@ -5,6 +5,7 @@ import Entity.Entity;
 public class Cell {
     private boolean occupied;
     private Entity entity;
+//    private String otherObjectType; // todo: may be created if we have more time; shold represent somthing like trees and objects on the grid
 
     public Cell(){
         this.entity = null;
@@ -15,6 +16,12 @@ public class Cell {
         this.entity = entity;
         this.occupied = true;
     }
+
+    public Cell(Cell other) {
+        this.occupied = other.occupied;
+        this.entity = other.entity.clone();
+    }
+
 
     public Entity getEntity() {
         return entity;
