@@ -1,6 +1,6 @@
 package ItemsAndSpells;
 
-public class Spell {
+public class Spell{
     public enum SpellType {ATTACK, DEFENCE}
 
     private String name;
@@ -37,5 +37,13 @@ public class Spell {
 
     public SpellType getSpellType() {
         return spellType;
+    }
+
+    public Spell clone() {
+        try {
+            return (Spell) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }

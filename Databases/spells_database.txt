@@ -1,5 +1,3 @@
-String name, String description, SpellType spellType, int value
-
 Frost Hands; need to add later
 ATTACK; 9
 

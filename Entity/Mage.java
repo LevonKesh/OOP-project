@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Mage extends Enemy {
 
-    private Spell[] spells;
+    private ArrayList<Spell> spells;
 
     public Mage() {
         super();
@@ -19,7 +19,7 @@ public class Mage extends Enemy {
     public Mage(String name, int armorClass, int hitPoints, int speed,
                 int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma,
                 ArrayList<Item> inventory, ArrayList<Integer> inventoryCount,
-                int XP, AItype enemyType, Spell[] spells) {
+                int XP, AItype enemyType, ArrayList<Spell> spells) {
         super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma,
                 inventory, inventoryCount, XP, enemyType);
         setEnemyAIType(AItype.MAGE);
@@ -27,17 +27,17 @@ public class Mage extends Enemy {
     }
 
 
-    public Spell[] getSpells() {
-        Spell[] newSpells = new Spell[spells.length];
-        for (int i = 0; i < spells.length; i++) {
-            newSpells[i] = new Spell(spells[i]);
+    public ArrayList<Spell> getSpells() {
+        ArrayList<Spell> newSpells = new ArrayList<>();
+        for (int i = 0; i < spells.size(); i++) {
+            newSpells.add(new Spell(spells.get(i)));
         }
         return newSpells;
     }
 
     public Spell getRandomSpell() {
-        int index = (int) (Math.random() * spells.length);
-        return spells[index];
+        int index = (int) (Math.random() * spells.size());
+        return spells.get(index);
     }
 
     @Override
