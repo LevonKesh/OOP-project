@@ -1,0 +1,10 @@
+Act 1
+---
+Dwarf sends to adventure text. Should be on multiple lines and should be read line by line
+---
+Sees cave in the distance text. again on mult lines
+---
+eardrops goblins talkin text.
+---
+Klarg talking with the hero.
+
