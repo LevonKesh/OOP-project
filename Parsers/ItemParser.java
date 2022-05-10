@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class ItemParser {
-    private ArrayList<Item> items = new ArrayList<>();
+    private static ArrayList<Item> items = new ArrayList<>();
 
-    public void parseDatabase() {
+    public static void parseDatabase() {
         Scanner inputStream = null;
 
         try {
@@ -35,7 +35,7 @@ public abstract class ItemParser {
         }
     }
 
-    public ArrayList<Item> getSelectedItems(String... names) {
+    public static ArrayList<Item> getSelectedItems(String... names) {
         ArrayList<Item> selectedItems = new ArrayList<>();
 
         for (int i = 0; i < names.length; i++){

@@ -2,7 +2,6 @@ package Parsers;
 
 import Entity.Enemy;
 import Entity.Mage;
-import ItemParser.getSelectedItems;
 import ItemsAndSpells.Item;
 import ItemsAndSpells.Spell;
 
@@ -41,7 +40,7 @@ public abstract class EnemyParser {
             int charisma = Integer.parseInt(splittedLine2[5]);
 
             String[] splittedLine3 = inputStream.nextLine().split("; ");
-            ArrayList<Item> inventory = getSelectedItems(splittedLine3);
+            ArrayList<Item> inventory = ItemParser.getSelectedItems(splittedLine3);
 
             String[] splittedLine4 = inputStream.nextLine().split("; ");
             ArrayList<Integer> inventoryCount = new ArrayList<>(splittedLine4.length);
@@ -55,7 +54,7 @@ public abstract class EnemyParser {
 
             if (enemyType == Enemy.AItype.MAGE){
                 String[] splittedLine6 = inputStream.nextLine().split("; ");
-                ArrayList<Spell> spells = getSelectedSpells(splittedLine6);
+                ArrayList<Spell> spells = SpellParser.getSelectedSpells(splittedLine6);
                 enemies.add(new Mage(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount, XP,enemyType, spells));
             }else{
                 enemies.add(new Enemy(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount, XP,enemyType));
