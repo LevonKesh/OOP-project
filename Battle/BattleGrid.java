@@ -106,7 +106,7 @@ public class BattleGrid {
             int possibleDistance = grid[origin.getRow()][origin.getCol()].getEntity().getSpeed();
             for (int i = 0; i < GRID_DIMENSION; i++) {
                 for (int j = 0; j < GRID_DIMENSION; j++) {
-                    Position possiblePosition = new Position(i,j);
+                    Position possiblePosition = new Position(i, j);
                     if (distanceCalculator(origin, possiblePosition) <= possibleDistance &&
                             !origin.equals(possiblePosition)) {
                         availablePositions.add(possiblePosition);
@@ -149,6 +149,13 @@ public class BattleGrid {
                             defender.getArmorClass() - defender.getConstitution();
                     if (damage < 0) damage = 5;
                     defender.setHitPoints(defender.getHitPoints() - damage);
+                    if (defender.getHitPoints() <= 0) {
+                        if (defender instanceof Player) {
+                            gameOver();
+                        } else {
+                            grid[d.getRow()][d.getCol()] = null;
+                        }
+                    }
                     return true;
                 } else {
                     Mage mage = (Mage) attacker;
@@ -158,6 +165,9 @@ public class BattleGrid {
                                 defender.getArmorClass() - defender.getConstitution();
                         if (damage < 5) damage = 5;
                         defender.setHitPoints(defender.getHitPoints() - damage);
+                        if (defender.getHitPoints() <= 0) {
+                            gameOver();
+                        }
                         return true;
                     } else if (spell.getSpellType() == Spell.SpellType.DEFENCE && !(defender instanceof Player)) {
                         defender.setHitPoints(defender.getHitPoints() + spell.getValue() + Dice.d6() + attacker.getIntelligence());
@@ -217,6 +227,11 @@ public class BattleGrid {
             }
         }
         return true;
+    }
+
+    public void gameOver() {
+        System.out.println("You died.");
+        System.exit(0);
     }
 
     private double distanceCalculator(Position o, Position d) {
