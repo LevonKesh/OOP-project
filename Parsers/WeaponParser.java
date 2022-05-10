@@ -22,22 +22,20 @@ public abstract class WeaponParser {
         }
 
         while (inputStream.hasNextLine()) {
-            String line = inputStream.nextLine();
-            if (line != "") {
-                String[] splittedLine1 = line.split("; ");
-                String name = splittedLine1[0];
-                String description = splittedLine1[0];
+            String[] splittedLine1 = inputStream.nextLine().split("; ");
+            String name = splittedLine1[0];
+            String description = splittedLine1[1];
 
-                String[] splittedLine2 = inputStream.nextLine().split("; ");
-                int value = Integer.parseInt(splittedLine2[0]);
-                int damage = Integer.parseInt(splittedLine2[1]);
+            String[] splittedLine2 = inputStream.nextLine().split("; ");
+            int value = Integer.parseInt(splittedLine2[0]);
+            int damage = Integer.parseInt(splittedLine2[1]);
 
-                String[] splittedLine3 = inputStream.nextLine().split("; ");
-                boolean isLootable = (splittedLine3[0] == "true");
-                boolean isRanged = (splittedLine3[1] == "true");
+            String[] splittedLine3 = inputStream.nextLine().split("; ");
+            boolean isLootable = (splittedLine3[0] == "true");
+            boolean isRanged = (splittedLine3[1] == "true");
 
-                weapons.add(new Weapon(name, description, value, damage, isLootable, isRanged));
-            }
+            weapons.add(new Weapon(name, description, value, damage, isLootable, isRanged));
+            inputStream.nextLine();
         }
     }
 
@@ -46,13 +44,12 @@ public abstract class WeaponParser {
 
         for (int i = 0; i < names.length; i++){
             for (int j = 0; j < weapons.size(); j++){
-                if (names[i] == weapons.get(j).getName())
+                if (names[i].equals(weapons.get(j).getName()))
                     selectedWeapons.add(weapons.get(j).clone());
             }
         }
 
         return selectedWeapons;
     }
-
 
 }
