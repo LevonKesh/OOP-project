@@ -1,26 +1,22 @@
-package Battle;
-
-import Entity.Entity;
-
-import java.util.ArrayList;
-
-public class Battle {
-    final int boardDimension = 10;
-    private final Board battleBoard = new Board();
-
-    public Battle(Entity[] participants){
-        battleBoard.putParticipants(participants);
-    }
-
-    public Board getBoard() {
-        return battleBoard;
-    }
-
-    public ArrayList<Entity> getParticipants() {
-        return battleBoard.getParticipants();
-    }
-
-    public void showMoves(Entity entity){
-        //TODO Print moves with javafx
-    }
-}
+//package Battle;
+//
+//import Entity.Entity;
+//
+//import java.util.ArrayList;
+//
+//public class Battle {
+//    private final BattleGrid battleGrid = new BattleGrid();
+//
+//    public Battle(Entity[] participants){
+//        battleGrid.putParticipants(participants);
+//    }
+//
+//    public BattleGrid getBoard() {
+//        return battleGrid;
+//    }
+//
+//    public ArrayList<Entity> getParticipants() {
+//        return battleGrid.getParticipants();
+//    }
+//
+//}

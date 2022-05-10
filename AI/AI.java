@@ -1,11 +1,14 @@
 package AI;
 
-public abstract class AI implements AI_Constants {
+import Battle.BattleGrid;
+import Battle.Position;
+
+public interface AI extends AI_Constants {
     // BASIC, MAGE, DRAGON todo: maybe dragon needs to be under basic
 //    private String AItype;
 
 
-    public Strategy evaluateSituation(BattleGrid grid, Position positionOfMonster, Position positionOfPlayer) {
+    public Strategy evaluateSituation(BattleGrid grid, Position positionOfMonster, Position positionOfPlayer); //{
 //        Enemy enemy = grid.getEntity(positionOfMonster);
 //        Entity.AItype entityType = enemy.getEntityType();
 //        if (entityType.equals(AItype.MELEE)) {
@@ -34,5 +37,5 @@ public abstract class AI implements AI_Constants {
 //        }
 
 //    Weapon weapon = enemy.getRandomWeapon();
-    }
+//    }
 }

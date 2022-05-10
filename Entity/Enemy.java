@@ -12,6 +12,7 @@ public class Enemy extends Entity {
         super();
         enemyType = AItype.MELEE;
         XP = 100;
+        setChosenWeapon();
     }
 
     public Enemy(String name, int armorClass, int hitPoints, int speed,
@@ -21,6 +22,7 @@ public class Enemy extends Entity {
         super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount);
         this.XP = XP;
         this.enemyType = enemyType;
+        setChosenWeapon();
     }
 
     public AItype getEnemyAIType() {
@@ -37,5 +39,19 @@ public class Enemy extends Entity {
 
     public void setXP(int XP) {
         this.XP = XP;
+    }
+
+    public void setChosenWeapon() {
+        if (enemyType == AItype.RANGED) {
+            setChosenWeapon(getWeaponWithMaxDamage(getRangedWeapons()));
+        }
+        else {
+            setChosenWeapon(getWeaponWithMaxDamage(getMeleeWeapons()));
+        }
+    }
+
+    @Override
+    public Enemy clone() {
+        return (Enemy) super.clone();
     }
 }

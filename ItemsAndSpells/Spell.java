@@ -1,7 +1,5 @@
 package ItemsAndSpells;
 
-import Actions.Action;
-
 public class Spell {
     public enum SpellType {ATTACK, DEFENCE}
 

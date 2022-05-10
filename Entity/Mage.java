@@ -22,6 +22,7 @@ public class Mage extends Enemy {
                 int XP, AItype enemyType, Spell[] spells) {
         super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma,
                 inventory, inventoryCount, XP, enemyType);
+        setEnemyAIType(AItype.MAGE);
         this.spells = spells;
     }
 
@@ -37,5 +38,12 @@ public class Mage extends Enemy {
     public Spell getRandomSpell() {
         int index = (int) (Math.random() * spells.length);
         return spells[index];
+    }
+
+    @Override
+    public Mage clone() {
+        Mage clone = (Mage) super.clone();
+        clone.spells = getSpells();
+        return clone;
     }
 }

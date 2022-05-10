@@ -2,12 +2,9 @@ package Entity;
 
 import java.util.ArrayList;
 
-import AI.AI_Constants;
 import ItemsAndSpells.*;
 
-public class Player extends Entity implements AI_Constants {
-
-    private Weapon chosenWeapon;
+public class Player extends Entity {
     private int availableSkillPoints = 0;
 
     public Player() {
@@ -16,11 +13,10 @@ public class Player extends Entity implements AI_Constants {
 
     public Player(String name, int armorClass, int hitPoints, int speed, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, ArrayList<Item> inventory, ArrayList<Integer> inventoryCount) {
         super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount);
-        this.chosenWeapon = getWeaponWithMaxDamage();
     }
 
     public void setChosenWeapon(int index) {
-        this.chosenWeapon = getWeapons().get(index);
+        setChosenWeapon(getWeapons().get(index));
     }
 
     public void increaseStrength() {
@@ -85,5 +81,10 @@ public class Player extends Entity implements AI_Constants {
             takeFromInventory(new Item("Potion", "Potion description")); // ToDo: needs concrete name and description for potion
             this.setHitPoints(this.getHitPoints() + 50);
         }
+    }
+
+    @Override
+    public Player clone() {
+        return (Player) super.clone();
     }
 }

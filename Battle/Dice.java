@@ -1,6 +1,6 @@
-package Engine;
+package Battle;
 
-public class Dice {
+public abstract class Dice {
     public static int d20() {
         return (int)(Math.random() * 20) + 1;
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import AI.AI_Constants;
 import ItemsAndSpells.*;
 
-public class Entity implements AI_Constants {
+public class Entity implements AI_Constants, Cloneable {
     private String name;
 
     private int armorClass;
@@ -23,6 +23,8 @@ public class Entity implements AI_Constants {
     private ArrayList<Item> inventory;
     private ArrayList<Integer> inventoryCount;
 
+    private Weapon chosenWeapon;
+
     public Entity() {
         name = null;
         armorClass = 0;
@@ -36,6 +38,7 @@ public class Entity implements AI_Constants {
         wisdom = 10;
         inventory = null;
         inventoryCount = null;
+        this.chosenWeapon = getWeaponWithMaxDamage();
     }
 
     public Entity(String name, int armorClass, int hitPoints, int speed,
@@ -53,6 +56,7 @@ public class Entity implements AI_Constants {
         this.wisdom = wisdom;
         this.inventory = inventory;
         this.inventoryCount = inventoryCount;
+        this.chosenWeapon = getWeaponWithMaxDamage();
     }
 
     public String getName() {
@@ -123,6 +127,13 @@ public class Entity implements AI_Constants {
         return wisdom;
     }
 
+    public void setChosenWeapon(Weapon chosenWeapon) {
+        this.chosenWeapon = chosenWeapon.clone();
+    }
+
+    public Weapon getChosenWeapon() {
+        return chosenWeapon.clone();
+    }
 
     public ArrayList<Item> getInventory() {
         ArrayList<Item> newInventory = new ArrayList<Item>();
@@ -133,7 +144,11 @@ public class Entity implements AI_Constants {
     }
 
     public ArrayList<Integer> getInventoryCount() {
-        return (ArrayList<Integer>) this.inventoryCount.clone();
+        ArrayList<Integer> newInventoryCount = new ArrayList<>();
+        for (int i = 0; i < this.inventoryCount.size(); i++) {
+            newInventoryCount.set(i, this.inventoryCount.get(i));
+        }
+        return newInventoryCount;
     }
 
     public void addToInventory(Item newItem) {
@@ -208,5 +223,17 @@ public class Entity implements AI_Constants {
     public Weapon getRandomWeapon(ArrayList<Weapon> weaponList) {
         int index = (int) (Math.random() * weaponList.size());
         return weaponList.get(index).clone();
+    }
+
+    @Override
+    public Entity clone() {
+        try {
+            Entity clone = (Entity) super.clone();
+            clone.inventory = getInventory();
+            clone.inventoryCount = getInventoryCount();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
