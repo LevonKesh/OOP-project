@@ -1,12 +1,12 @@
 Goblin; 10; 75; 4
 12; 13; 7; 5; 5; 4
-Iron Sword; Coins
+Iron Sword
 1
 200; MELEE
 
 Goblin; 10; 75; 4
 12; 13; 7; 5; 5; 4
-Iron Sword; Bow; Coins
+Iron Sword; Bow
 1; 1
 200; RANGED
 
@@ -18,13 +18,13 @@ Claw
 
 Bugbear; 14; 125; 3
 14; 7; 10; 8; 7; 6
-Iron Mace; Crossbow; Coins
+Iron Mace; Crossbow
 1; 1
 450; RANGED
 
 Cultist; 11; 100; 3
 10; 10; 8; 12; 10; 12
-Iron Knife; Coins
+Iron Knife
 1
 550; MAGE
 Frost Hands; Healing
