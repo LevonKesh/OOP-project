@@ -1,0 +1,43 @@
+Iron Sword; A regular sword used by every race
+150; 10
+true; false
+
+Bow; A bow used by the goblins
+100; 4
+true; true
+
+Claw; not needed
+1; 4
+false; false
+
+Iron Mace; A heavy mace used by dwarven legions
+250; 14
+true; false
+
+Crossbow; A dwarven crossbow
+300; 12
+true; true
+
+Iron Knife; Small knife which can barely cut a bread
+15; 3
+true; false
+
+Nothik Claws; not needed
+1; 16
+false; false
+
+Magical Mace; Mace with magical runes inscribed on it
+500; 17
+true; false
+
+Sword Of Alenduil; The legendary sword of Alenduil given to you by the old druid
+1000000; 75
+false; false
+
+Dragon Claws; not needed
+1; 40
+false; false
+
+Dragon Tail; not needed
+1; 60
+false

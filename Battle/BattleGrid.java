@@ -1,13 +1,12 @@
 package Battle;
 
-import AI.AI_Constants;
 import Entity.*;
 import ItemsAndSpells.Spell;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BattleGrid implements AI_Constants {
+public class BattleGrid {
     public static final int GRID_DIMENSION = 10;
     private Cell[][] grid = new Cell[GRID_DIMENSION][GRID_DIMENSION];
 
@@ -134,6 +133,10 @@ public class BattleGrid implements AI_Constants {
         return false;
     }
 
+    public boolean playerAttack(Action action) { // TODO: needs to be written in engine; may be omitted
+        return performAction(action);
+    }
+
     public boolean performAction(Action action) {
         if (action != null) {
             Position o = action.getOrigin();
@@ -157,7 +160,7 @@ public class BattleGrid implements AI_Constants {
                         defender.setHitPoints(defender.getHitPoints() - damage);
                         return true;
                     } else if (spell.getSpellType() == Spell.SpellType.DEFENCE && !(defender instanceof Player)) {
-                        defender.setHitPoints(defender.getHitPoints() + spell.getValue());
+                        defender.setHitPoints(defender.getHitPoints() + spell.getValue() + Dice.d6() + attacker.getIntelligence());
                         return true;
                     }
                 }
@@ -169,26 +172,26 @@ public class BattleGrid implements AI_Constants {
     public void evaluateSituation(BattleGrid grid, Position positionOfEnemy) {
         Position positionOfPlayer = getPlayerPosition();
         Enemy enemy = (Enemy) grid.getCellAt(positionOfEnemy).getEntity();
-        Entity.AItype entityType = enemy.getEnemyAIType();
-        if (entityType.equals(Entity.AItype.MELEE)) {
+        Enemy.AItype entityType = enemy.getEnemyAIType();
+        if (entityType.equals(Enemy.AItype.MELEE)) {
             if (isNotBordering(positionOfEnemy, positionOfPlayer)) {
                 comeCloserToPlayer(positionOfEnemy);
             } else {
                 performAction(new Action(positionOfEnemy, positionOfPlayer, enemy.getChosenWeapon()));
             }
-        } else if (entityType.equals(AItype.RANGED)) {
+        } else if (entityType.equals(Enemy.AItype.RANGED)) {
             if (isNotBordering(positionOfEnemy, positionOfPlayer)) {
                 performAction(new Action(positionOfEnemy, positionOfPlayer, enemy.getChosenWeapon()));
             } else {
-                enemy.setEnemyAIType(AItype.MELEE);
+                enemy.setEnemyAIType(Enemy.AItype.MELEE);
                 evaluateSituation(grid, positionOfEnemy);
             }
-        } else if (entityType.equals(AItype.MAGE)) {
+        } else if (entityType.equals(Enemy.AItype.MAGE)) {
             Mage mage = (Mage) enemy;
             if (isNotBordering(positionOfEnemy, positionOfPlayer)) {
                 performAction(new Action(positionOfEnemy, positionOfPlayer, mage.getRandomSpell()));
             } else {
-                enemy.setEnemyAIType(AItype.MELEE);
+                enemy.setEnemyAIType(Enemy.AItype.MELEE);
                 evaluateSituation(grid, positionOfEnemy);
             }
         }

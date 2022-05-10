@@ -6,12 +6,14 @@ public class Item implements Cloneable {
     private String name;
     private String description;
     private int value;
-    private static boolean isSellable = true;
+    private boolean isLootable;
+    private boolean isSellable = true;
 
-    public Item(String name, String description, int value) {
+    public Item(String name, String description, int value, boolean isLootable) {
         this.name = name;
         this.description = description;
         this.value = value;
+        this.isLootable = isLootable;
     }
 
 
@@ -35,16 +37,20 @@ public class Item implements Cloneable {
         return value;
     }
 
+    public boolean isLootable() {
+        return isLootable;
+    }
+
     public void setValue(int value) {
         this.value = value;
     }
 
-    public static boolean isSellable() {
+    public boolean isSellable() {
         return isSellable;
     }
 
-    public static void setIsSellable(boolean isSellable) {
-        Item.isSellable = isSellable;
+    public void setIsSellable(boolean isSellable) {
+        this.isSellable = isSellable;
     }
 
     public Item clone(){

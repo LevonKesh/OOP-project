@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Enemy extends Entity {
     private int XP;
+    public enum AItype {MELEE, RANGED, MAGE};
     private AItype enemyType;
 
     public Enemy() {
@@ -43,12 +44,14 @@ public class Enemy extends Entity {
 
     public void setChosenWeapon() {
         if (enemyType == AItype.RANGED) {
-            setChosenWeapon(getWeaponWithMaxDamage(getRangedWeapons()));
+            setChosenWeapon(getRandomWeapon(getRangedWeapons()));
         }
         else {
-            setChosenWeapon(getWeaponWithMaxDamage(getMeleeWeapons()));
+            setChosenWeapon(getRandomWeapon(getMeleeWeapons()));
         }
     }
+
+//    public ArrayList<Item> lootInventory() // TODO: needs to be written in engine or somewhere else; if not can be written here
 
     @Override
     public Enemy clone() {

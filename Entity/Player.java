@@ -71,14 +71,14 @@ public class Player extends Entity {
     }
 
     public boolean checkForPotion() {
-        if (this.getInventory().contains(new Item("Potion", "Potion description", 50))) { // ToDo: needs concrete name and description for potion
+        if (this.getInventory().contains(new Item("Potion", "Potion description", 50, true))) { // ToDo: needs concrete name and description for potion
             return true;
         } else return false;
     }
 
     public void usePotion() {
         if (checkForPotion()) {
-            takeFromInventory(new Item("Potion", "Potion description", 50), 1); // ToDo: needs concrete name and description for potion
+            takeFromInventory(new Item("Potion", "Potion description", 50, true), 1); // ToDo: needs concrete name and description for potion
             this.setHitPoints(this.getHitPoints() + 50);
         }
     }

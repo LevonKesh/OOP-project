@@ -2,10 +2,9 @@ package Entity;
 
 import java.util.ArrayList;
 
-import AI.AI_Constants;
 import ItemsAndSpells.*;
 
-public class Entity implements AI_Constants, Cloneable {
+public class Entity implements Cloneable {
     private String name;
 
     private int armorClass;
@@ -162,7 +161,9 @@ public class Entity implements AI_Constants, Cloneable {
     }
 
     public void takeFromInventory(Item item, int count) {
-        if (this.inventory.contains(item) && this.inventoryCount.get(this.inventory.indexOf(item)) >= count) {
+        if (this.inventory.contains(item) &&
+                this.inventoryCount.get(this.inventory.indexOf(item)) >= count &&
+                item.isSellable() && item.isLootable()) {
             int index = this.inventory.indexOf(item);
             this.inventoryCount.set(index, this.inventoryCount.get(index) - count);
             if (this.inventoryCount.get(index) == 0) {

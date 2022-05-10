@@ -39,7 +39,7 @@ Scroll reads that Clarg was ordered to catch Dumbar.
 
 ChooseOne: 
   1. Search around more.
-      - ItemsAndSpells
+      - items
   2. Proceed.
 
 

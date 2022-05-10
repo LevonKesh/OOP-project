@@ -1,0 +1,50 @@
+Goblin; 10; 75; 4
+12; 13; 7; 5; 5; 4
+Iron Sword; Coins
+1
+200; MELEE
+
+Goblin; 10; 75; 4
+12; 13; 7; 5; 5; 4
+Iron Sword; Bow; Coins
+1; 1
+200; RANGED
+
+Wolf; 5; 50; 6
+8; 10; 6; 1; 0; 0
+Claw
+1
+125; MELEE
+
+Bugbear; 14; 125; 3
+14; 7; 10; 8; 7; 6
+Iron Mace; Crossbow; Coins
+1; 1
+450; RANGED
+
+Cultist; 11; 100; 3
+10; 10; 8; 12; 10; 12
+Iron Knife; Coins
+1
+550; MAGE
+Frost Hands; Healing
+
+Nothik; 17; 200; 5
+17; 13; 12; 6; 1; 0
+Nothik Claws; Nothik Venom
+1; 1
+1000; RANGED
+
+Evil Mage; 11; 150; 3
+12; 11; 10; 19; 17; 15
+Magical Mace
+1
+1400; MAGE
+Frost Hands; Fireball; Lightning; Healing
+
+Dragon; 20; 300; 2
+17; 3; 20; 17; 20; 19
+Dragon Claws; Dragon Tail
+1; 1
+3000; MAGE
+Fireball; Healing
