@@ -15,19 +15,27 @@ public class BattleWindow extends JFrame {
     private GridSquare[][] gridSquares = new GridSquare[10][10];
     private Position origin;
     private JPanel battlePanel = new JPanel();
+    private Player player;
+    private int totalXP;
 
     private class EndingListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             GridSquare gridSquare = (GridSquare) e.getSource();
             int[] coordinates = gridSquare.getCoordinates();
             gridClicked(coordinates);
-//            AImoves();
+            if (battleGrid.getEnemies() == null || battleGrid.getEnemies().size() == 0) {
+                player.addSkillPoints(totalXP / 200);
+                dispose();
+            }
         }
     }
 
     public BattleWindow(ArrayList<Entity> entities) {
         super("Battle");
         this.battleGrid = new BattleGrid(entities.toArray(new Entity[0]));
+        this.totalXP = XPcalc();
+        this.player = battleGrid.getPlayer();
+
         this.setMinimumSize(new Dimension(800, 820));
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,6 +63,8 @@ public class BattleWindow extends JFrame {
         for (Position position : enemyPositions) {
             try {
                 battleGrid.evaluateSituation(position);
+                this.setVisible(false);
+                this.setVisible(true);
             } catch (PlayerDiedException e) {
                 this.setVisible(false);
                 new DeathWindow();
@@ -72,7 +82,8 @@ public class BattleWindow extends JFrame {
                     gridSquares[i.getRow()][i.getCol()].setHighlight(true);
 
                 }
-            } else {
+            }
+            else {
                 this.origin = null;
             }
         } else {
@@ -81,19 +92,24 @@ public class BattleWindow extends JFrame {
                 gridSquares[i.getRow()][i.getCol()].setHighlight(false);
             }
             Position destination = new Position(coordinates[0], coordinates[1]);
-            if (battleGrid.getCellAt(destination).isOccupied()) {
-                try {
+            try {
+                if (battleGrid.getCellAt(destination).isOccupied() && !battleGrid.getPlayerPosition().equals(destination)) {
                     battleGrid.performAction(new Action(origin, destination, battleGrid.getPlayer().getChosenWeapon()));
-                } catch (PlayerDiedException e) {
-                    // impossible exception, just to keep compiler happy
-                }
-            } else {
-                battleGrid.performMove(new Move(this.origin, destination));
-            }
+                    this.setVisible(false);
+                    this.setVisible(true);
+                    AImoves();
+                    updateEntities();
 
-            updateEntities();
+                } else if (!battleGrid.getCellAt(destination).isOccupied()) {
+                    battleGrid.performMove(new Move(this.origin, destination));
+                    AImoves();
+                    updateEntities();
+                }
+            } catch (PlayerDiedException e) {
+
+            }
+            this.origin = null;
         }
-        this.origin = null;
     }
 
     private void updateEntities() {
@@ -109,6 +125,14 @@ public class BattleWindow extends JFrame {
                 }
             }
         }
+    }
+
+    private int XPcalc() {
+        int XP = 0;
+        for(Enemy i: battleGrid.getEnemies()) {
+            XP += i.getXP();
+        }
+        return XP;
     }
 
     public class GridSquare extends JButton {
@@ -147,7 +171,7 @@ public class BattleWindow extends JFrame {
             if (isHighlighted) {
                 this.setBackground(Color.RED);
             } else {
-                this.setBackground(new Color(200, 255, 220, (int) (0.79 * 255)));
+                this.setBackground(Color.LIGHT_GRAY);
             }
         }
     }

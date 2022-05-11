@@ -2,6 +2,8 @@ package Engine;
 
 import Entity.Player;
 import ItemsAndSpells.Item;
+import Parsers.ItemParser;
+import Parsers.WeaponParser;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,15 @@ public class Trader {
         this.player = player;
         this.inventory = inventory;
         this.inventoryCount = inventoryCount;
+    }
+    public Trader(Player player) {
+        this.player = player;
+        this.inventory = new ArrayList<>();
+        this.inventoryCount = new ArrayList<>();
+
+        addToInventory(WeaponParser.getSelectedWeapons("Iron Sword").get(0), 4);
+        addToInventory(coin, 3000);
+        addToInventory(ItemParser.getSelectedItems("Health Potion").get(0), 20);
     }
 
     public ArrayList<Item> getInventory() {

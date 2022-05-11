@@ -1,4 +1,6 @@
 package Engine;
 
-public class InventoryWindow {
+import javax.swing.*;
+
+public class InventoryWindow extends JFrame {
 }

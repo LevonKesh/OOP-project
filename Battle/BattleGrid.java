@@ -143,7 +143,7 @@ public class BattleGrid {
             if (!isEmpty(o) && isEmpty(d)) {
                 if (availablePositions(o).contains(d)) {
                     grid[d.getRow()][d.getCol()] = getCellAt(o);
-                    grid[o.getRow()][o.getCol()] = null;
+                    grid[o.getRow()][o.getCol()] = new Cell();
                     return true;
                 }
             }
@@ -176,7 +176,7 @@ public class BattleGrid {
                         if (defender instanceof Player) {
                             gameOver();
                         } else {
-                            grid[d.getRow()][d.getCol()] = null;
+                            grid[d.getRow()][d.getCol()] = new Cell();
                         }
                     }
                     return true;
