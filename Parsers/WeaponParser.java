@@ -1,5 +1,6 @@
 package Parsers;
 
+import ItemsAndSpells.Item;
 import ItemsAndSpells.Weapon;
 
 import java.io.FileInputStream;
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class WeaponParser {
-    private ArrayList<Weapon> weapons = new ArrayList<>();
+    private static ArrayList<Weapon> weapons = parseDatabase();
 
-    public void parseDatabase() {
+    public static ArrayList<Weapon> parseDatabase() {
+        ArrayList<Weapon> weapons = new ArrayList<>();
         Scanner inputStream = null;
 
         try {
@@ -31,16 +33,17 @@ public abstract class WeaponParser {
             int damage = Integer.parseInt(splittedLine2[1]);
 
             String[] splittedLine3 = inputStream.nextLine().split("; ");
-            boolean isLootable = (splittedLine3[0] == "true");
-            boolean isRanged = (splittedLine3[1] == "true");
+            boolean isLootable = (splittedLine3[0].equals("true"));
+            boolean isRanged = (splittedLine3[1].equals("true"));
 
             weapons.add(new Weapon(name, description, value, damage, isLootable, isRanged));
             inputStream.nextLine();
         }
+        return weapons;
     }
 
-    public ArrayList<Weapon> getSelectedWeapons(String... names) {
-        ArrayList<Weapon> selectedWeapons = new ArrayList<>();
+    public static ArrayList<Item> getSelectedWeapons(String... names) {
+        ArrayList<Item> selectedWeapons = new ArrayList<>();
 
         for (int i = 0; i < names.length; i++){
             for (int j = 0; j < weapons.size(); j++){
@@ -51,5 +54,4 @@ public abstract class WeaponParser {
 
         return selectedWeapons;
     }
-
 }

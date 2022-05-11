@@ -7,5 +7,6 @@ Healing Potion; Healing potion made by the priests from the shrine of Artesha
 Scroll From Klarg; Description of the scroll
 1; false
 
-Scroll From Mage; Description of the scroll
+Key From Mage; An ornamented key taken from mage
 1; false
+-
