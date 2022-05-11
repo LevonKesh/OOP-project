@@ -67,14 +67,15 @@ public class TraderWindow extends JFrame {
         }
     }
 
-    public TraderWindow(Player player) {
+    public TraderWindow(Player player, Trader trader) {
         super("Trader");
         this.player = player;
-        this.trader = new Trader(player);
+        this.trader = trader;
 
         setSize(600, 850);
         setResizable(false);
         setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         playerInventory.setLayout(new GridLayout(player.getInventory().size(), 2));
 
@@ -100,5 +101,7 @@ public class TraderWindow extends JFrame {
         }
 
         add(traderInventory);
+
+        setVisible(true);
     }
 }
