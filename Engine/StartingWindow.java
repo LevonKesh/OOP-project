@@ -57,6 +57,7 @@ public class StartingWindow extends JFrame {
     startButton.addActionListener(new startListener());
     startButton.setVisible(true);
     startButton.setIcon(new ImageIcon("GFX/start.png"));
+    startButton.setSize(new Dimension(100,100));
     mainPanel.add(startButton, BorderLayout.CENTER);
 
     nameInsertion.add(nameLabel, BorderLayout.NORTH);
