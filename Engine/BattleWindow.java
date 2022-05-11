@@ -21,7 +21,6 @@ public class BattleWindow extends JFrame {
             GridSquare gridSquare = (GridSquare) e.getSource();
             int[] coordinates = gridSquare.getCoordinates();
             gridClicked(coordinates);
-//            AImoves();
         }
     }
 
@@ -55,6 +54,8 @@ public class BattleWindow extends JFrame {
         for (Position position : enemyPositions) {
             try {
                 battleGrid.evaluateSituation(position);
+                this.setVisible(false);
+                this.setVisible(true);
             } catch (PlayerDiedException e) {
                 this.setVisible(false);
                 new DeathWindow();
@@ -72,7 +73,8 @@ public class BattleWindow extends JFrame {
                     gridSquares[i.getRow()][i.getCol()].setHighlight(true);
 
                 }
-            } else {
+            }
+            else {
                 this.origin = null;
             }
         } else {
@@ -81,19 +83,24 @@ public class BattleWindow extends JFrame {
                 gridSquares[i.getRow()][i.getCol()].setHighlight(false);
             }
             Position destination = new Position(coordinates[0], coordinates[1]);
-            if (battleGrid.getCellAt(destination).isOccupied()) {
-                try {
+            try {
+                if (battleGrid.getCellAt(destination).isOccupied()) {
                     battleGrid.performAction(new Action(origin, destination, battleGrid.getPlayer().getChosenWeapon()));
-                } catch (PlayerDiedException e) {
-                    // impossible exception, just to keep compiler happy
-                }
-            } else {
-                battleGrid.performMove(new Move(this.origin, destination));
-            }
+                    this.setVisible(false);
+                    this.setVisible(true);
+                    AImoves();
+                    updateEntities();
 
-            updateEntities();
+                } else if (!battleGrid.getCellAt(destination).isOccupied()) {
+                    battleGrid.performMove(new Move(this.origin, destination));
+                    AImoves();
+                    updateEntities();
+                }
+            } catch (PlayerDiedException e) {
+
+            }
+            this.origin = null;
         }
-        this.origin = null;
     }
 
     private void updateEntities() {
@@ -147,7 +154,7 @@ public class BattleWindow extends JFrame {
             if (isHighlighted) {
                 this.setBackground(Color.RED);
             } else {
-                this.setBackground(new Color(200, 255, 220, (int) (0.79 * 255)));
+                this.setBackground(Color.LIGHT_GRAY);
             }
         }
     }
