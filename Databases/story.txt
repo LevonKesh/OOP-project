@@ -1,56 +1,76 @@
 Act 1
 ---
-0 Dwarf sends to adventure text. Should be on multiple lines and should be read line by line
+0 You are walking down the path that the dwarf pointed you towards.
+You can already see Phandolin in the distance: the small city that hosts the shrine of Eridel, the goddess of prosperity.
+Suddenly you see a horse, laying down on the side of the road. You notice the horse is on its dying breath.
+Do you decide to go closer, or investigate the area around?
 ---
 1 Goblin ambush
 ---
 2 investigation success
 ---
-3 Sees cave in the distance text. again on mult lines. eardrops goblins talkin text.
+3 The traces of the goblins footprints direct your gaze into the cave nearby. Walking into it you start hearing noises.
+They appear to be voices of two more goblins talking. You proceed to eavesdrop on the conversation and learn about their
+boss Clarg and his orders to loot caravans until they catch․․. Goblin's conversation stops when they hear your footsteps.
 ---
 4 Attacks goblins
 ---
 5 You reach the end of the cave
 ---
-6 Klarg talking with the hero.
+6 Klarg starts confronting you for ruining his plans and killing his units, your battle with Klarg commences.
 ---
-7 Reading from the scroll. Going to Phandolin
+7 After defeating Klarg you see a scroll dropped from his body, Reading from the scroll you learn that Klarg was ordered
+to catch Dumbar. You then exit the cave and go towards Phandolin.
 -
 Act 2
 ---
-0 news from the inn
+0 Upon reaching the Aleswell Inn you overhear a halfwit screaming about the local shrine getting raided
 ---
-1 story of the halfling
+1 The halfwit goes on about how a group of cultists entered the shrine and started looting and raiding everything in it.
+He managed to escape but the priestess is still in the shrine, heavily wounded.
 ---
-2 story of the halfwit
+2 When you set to leave for the shrine to investigate further, you overhear how a halfling describes how a group of orcs
+entered his house and massacred his family. Barely escaping he rushed towards the inn for help.
 ---
-3 shrine: priestess giving you healing potions and shows the place of cultists
+3 You decide to investigate the shrine first and upon reaching the entrance you see the priestess on her last breath.
+She offers you some potions of health in exchange for your willingness to save the shrine. You then enter the shrine and
+see 2 orcs and 3 cultists violently looting the shrine. You rush to attack them
 ---
-4 shrine: scroll from the cultists
+4 After finishing off the cultists you find a key from one of them along with a note from an unknown person that says the
+city is going to get invaded soon.
 ---
-5 shrine: talking with halfwit
+5 You then rush to the Inn to inform the halfwit about the situation in the shrine, and immediately go towards the halfing's house.
+
 ---
-6 house: found the dead halflings and troll
+6 Upon reaching the house you discover the family of the halfling dead as well as a troll laying dead next to them. You then see a tunnel
+dug under the house. The tunnel is closed with a trapdoor which has a keyhole in it
 ---
-7 text about not being able to proceed because of the shrine
+7 You try to open the trapdoor but are unsuccessful.
 ---
-8 text about being able to proceed
+8 You reach for the trapdoor and notice it's locked, you then try the key you got from one of the cultists and it fits.
 ---
-9 evil mage talking
+9 As the door slams open you see a mage in the tunnel, chanting a spell. You go closer and as soon as he notices you, he turns
+"You have been disturbing our plans but the return of Azeroth is inevitable. We just need the sacrifice of more halfling blood and his
+true form will be reached."
 ---
-10 persuasion succeed
+10 You talk to the mage about how countless sacrifices are never worth it, no matter the cause. Your words sound strong and trustworthy
+and you manage to persuade the mage at last.
 ---
-11 battle with the mage
+11 You try to talk the mage out of the ritual but he immediately attacks you so you are left with no other choice.
 ---
-12 scroll about the god-dragon
+12 The scroll the mage carried was that of Azeroth, the ancient god-dragon, and the embodiment of pure evil.
 -
 Act 3
 ---
-0 Meeting druid text
+0 Wanting to stop Azeroth you rush through the tunnel to the sounds of roars that come from the forest. On your way you see the
+guardian of the forest, the druid Jin'alun. He says that his powers have already faded from the previous attempt of battling the dragon.
+He then hands you the Sword of Alenduil, the legendary weapon that was once used to defeat Azeroth.
 ---
-1 Meeting dragon text
+1 You Proceed to the Thunder Tree the biggest and oldest tree in the forest, around it you see the encampment of cultists and
+the half-flesh half-skeletal form of Azeroth. Upon encounter Azeroth lets off a loud roar, and starts flapping its wings.
+You unsheathe the  Sword of Alenduil, leaving the sheathe on the floor and rush towards the dragon.
 ---
-2 final text
+2 Good job. You won against Azeroth and the humanity is saved once again thanks to your efforts.
 -
 
 
