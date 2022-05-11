@@ -16,7 +16,7 @@ public abstract class ItemParser {
         Scanner inputStream = null;
 
         try {
-            inputStream = new Scanner(new FileInputStream("Databases\\items_database.txt"));
+            inputStream = new Scanner(new FileInputStream("Databases/items_database.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Databases\\items_database.txt was not found");
             System.out.println("or could not be opened.");

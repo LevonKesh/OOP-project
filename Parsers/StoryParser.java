@@ -16,7 +16,7 @@ public abstract class StoryParser {
         Scanner inputStream = null;
 
         try {
-            inputStream = new Scanner(new FileInputStream("Databases\\story.txt"));
+            inputStream = new Scanner(new FileInputStream("Databases/story.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Databases\\story.txt was not found");
             System.out.println("or could not be opened.");

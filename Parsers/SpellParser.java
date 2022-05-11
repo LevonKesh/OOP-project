@@ -16,7 +16,7 @@ public abstract class SpellParser {
         Scanner inputStream = null;
 
         try {
-            inputStream = new Scanner(new FileInputStream("Databases\\spells_database.txt"));
+            inputStream = new Scanner(new FileInputStream("Databases/spells_database.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Databases\\spells_database.txt was not found");
             System.out.println("or could not be opened.");

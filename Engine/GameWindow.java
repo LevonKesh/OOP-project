@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Battle.Dice;
+import Entity.Entity;
 import Entity.Player;
 import Parsers.*;
 
@@ -64,9 +65,11 @@ public class GameWindow extends JFrame {
             //NEXT BUTTON
             if (event.equals(nextButton.getText())) {
                 if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(1))) {
-                    setVisible(false);
-                    // battle with 2 goblins need to create battle here
-                    setVisible(true);
+                    GameWindow.this.setVisible(false);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin","Goblin"));
+                    entities.add(player);
+                    new BattleWindow(entities);
+                    GameWindow.this.setVisible(true);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(2))) {
@@ -265,6 +268,8 @@ public class GameWindow extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setPreferredSize(new Dimension(600, 650));
         mainPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        storyText.setLineWrap(true);
+        storyText.setEditable(false);
         storyText.setText(StoryParser.parseDatabase().get(0).get(0));
         storyText.setFont(new Font(Font.SERIF, Font.PLAIN, 16));
 

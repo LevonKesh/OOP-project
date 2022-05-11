@@ -12,6 +12,6 @@ public class Main {
         ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
         Player player = new Player("Valod");
         entities.add(player);
-        new BattleWindow(entities);
+        new StartingWindow();
     }
 }

@@ -16,7 +16,7 @@ public abstract class WeaponParser {
         Scanner inputStream = null;
 
         try {
-            inputStream = new Scanner(new FileInputStream("Databases\\weapons_database.txt"));
+            inputStream = new Scanner(new FileInputStream("Databases/weapons_database.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File Databases\\weapons_database.txt was not found");
             System.out.println("or could not be opened.");
