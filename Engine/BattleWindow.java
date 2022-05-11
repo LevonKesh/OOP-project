@@ -155,29 +155,14 @@ public class BattleWindow extends JFrame {
 
         public void setEntity(String p) {
             switch (p) {
-                case "Goblin":
-                    this.setIcon(new ImageIcon("GFX\\goblin.jpg"));
-                    break;
-                case "Cultist":
-                    this.setIcon(new ImageIcon("GFX\\cultist.jpg"));
-                    break;
-                case "Dragon":
-                    this.setIcon(new ImageIcon("GFX\\dragon.jpg"));
-                    break;
-                case "Hero":
-                    this.setIcon(new ImageIcon("GFX\\hero.jpg"));
-                    break;
-                case "Mage":
-                    this.setIcon(new ImageIcon("GFX\\mage.jpg"));
-                    break;
-                case "Orc":
-                    this.setIcon(new ImageIcon("GFX\\orc.jpg"));
-                    break;
-                case "Troll":
-                    this.setIcon(new ImageIcon("GFX\\troll.jpg"));
-                    break;
-                default:
-                    this.setIcon(new ImageIcon("GFX\\hero.png"));
+                case "Goblin" -> this.setIcon(new ImageIcon("GFX\\goblin.jpg"));
+                case "Cultist" -> this.setIcon(new ImageIcon("GFX\\cultist.jpg"));
+                case "Dragon" -> this.setIcon(new ImageIcon("GFX\\dragon.jpg"));
+                case "Hero" -> this.setIcon(new ImageIcon("GFX\\hero.jpg"));
+                case "Mage" -> this.setIcon(new ImageIcon("GFX\\mage.jpg"));
+                case "Orc" -> this.setIcon(new ImageIcon("GFX\\orc.jpg"));
+                case "Troll" -> this.setIcon(new ImageIcon("GFX\\troll.jpg"));
+                default -> this.setIcon(new ImageIcon("GFX\\hero.png"));
             }
         }
 
