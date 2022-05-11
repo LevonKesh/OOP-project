@@ -22,8 +22,8 @@ Iron Knife; Small knife which can barely cut a bread
 15; 3
 true; false
 
-Nothik Claws; not needed
-1; 16
+Giant Club; not needed
+1; 19
 false; false
 
 Magical Mace; Mace with magical runes inscribed on it
@@ -41,3 +41,4 @@ false; false
 Dragon Tail; not needed
 1; 60
 false; false
+-

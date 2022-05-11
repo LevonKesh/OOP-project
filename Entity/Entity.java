@@ -37,7 +37,9 @@ public class Entity implements Cloneable {
         wisdom = 10;
         inventory = null;
         inventoryCount = null;
-        this.chosenWeapon = getWeaponWithMaxDamage();
+        if (inventory != null) {
+            this.chosenWeapon = getWeaponWithMaxDamage();
+        }
     }
 
     public Entity(String name, int armorClass, int hitPoints, int speed,
@@ -137,7 +139,7 @@ public class Entity implements Cloneable {
     public ArrayList<Item> getInventory() {
         ArrayList<Item> newInventory = new ArrayList<Item>();
         for (int i = 0; i < this.inventory.size(); i++) {
-            newInventory.set(i, this.inventory.get(i).clone());
+            newInventory.add(i, this.inventory.get(i).clone());
         }
         return newInventory;
     }
@@ -145,7 +147,7 @@ public class Entity implements Cloneable {
     public ArrayList<Integer> getInventoryCount() {
         ArrayList<Integer> newInventoryCount = new ArrayList<>();
         for (int i = 0; i < this.inventoryCount.size(); i++) {
-            newInventoryCount.set(i, this.inventoryCount.get(i));
+            newInventoryCount.add(i, this.inventoryCount.get(i));
         }
         return newInventoryCount;
     }
@@ -178,7 +180,7 @@ public class Entity implements Cloneable {
     public ArrayList<Weapon> getWeapons() {
         ArrayList<Weapon> newWeapons = new ArrayList<Weapon>();
         for (Item i : this.inventory) {
-            if (i.getClass() == Weapon.class) {
+            if (i instanceof Weapon) {
                 newWeapons.add((Weapon) i);
             }
         }

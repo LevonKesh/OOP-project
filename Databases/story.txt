@@ -1,10 +1,58 @@
 Act 1
 ---
-Dwarf sends to adventure text. Should be on multiple lines and should be read line by line
+0 Dwarf sends to adventure text. Should be on multiple lines and should be read line by line
 ---
-Sees cave in the distance text. again on mult lines
+1 Goblin ambush
 ---
-eardrops goblins talkin text.
+2 investigation success
 ---
-Klarg talking with the hero.
+3 Sees cave in the distance text. again on mult lines. eardrops goblins talkin text.
+---
+4 Attacks goblins
+---
+5 You reach the end of the cave
+---
+6 Klarg talking with the hero.
+---
+7 Reading from the scroll. Going to Phandolin
+-
+Act 2
+---
+0 news from the inn
+---
+1 story of the halfling
+---
+2 story of the halfwit
+---
+3 shrine: priestess giving you healing potions and shows the place of cultists
+---
+4 shrine: scroll from the cultists
+---
+5 shrine: talking with halfwit
+---
+6 house: found the dead halflings and troll
+---
+7 text about not being able to proceed because of the shrine
+---
+8 text about being able to proceed
+---
+9 evil mage talking
+---
+10 persuasion succeed
+---
+11 battle with the mage
+---
+12 scroll about the god-dragon
+-
+Act 3
+---
+0 Meeting druid text
+---
+1 Meeting dragon text
+---
+2 final text
+-
+
+
+
 

@@ -30,7 +30,7 @@ public class Mage extends Enemy {
     public ArrayList<Spell> getSpells() {
         ArrayList<Spell> newSpells = new ArrayList<>();
         for (int i = 0; i < spells.size(); i++) {
-            newSpells.add(new Spell(spells.get(i)));
+            newSpells.add(i, spells.get(i).clone());
         }
         return newSpells;
     }

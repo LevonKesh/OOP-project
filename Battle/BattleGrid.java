@@ -11,6 +11,12 @@ public class BattleGrid {
     private Cell[][] grid = new Cell[GRID_DIMENSION][GRID_DIMENSION];
 
     public BattleGrid(Entity[] participants) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j] = new Cell();
+            }
+        }
+
         putParticipants(participants);
     }
 
@@ -20,9 +26,9 @@ public class BattleGrid {
             int x;
             int y;
             do {
-                x = generator.nextInt(0, 9);
-                y = generator.nextInt(0, 9);
-            } while (!grid[x][y].isOccupied());
+                x = generator.nextInt(10);
+                y = generator.nextInt(10);
+            } while (grid[x][y].isOccupied());
             grid[x][y].setEntity(entity);
         }
     }
@@ -68,6 +74,18 @@ public class BattleGrid {
         return enemies;
     }
 
+    public ArrayList<Position> getEnemyPositions() {
+        ArrayList<Position> positions = new ArrayList<>();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j].getEntity() != null && grid[i][j].getEntity() instanceof Enemy) {
+                    positions.add(new Position(i, j));
+                }
+            }
+        }
+        return positions;
+    }
+
     public Player getPlayer() {
         for (Cell[] row : grid) {
             for (Cell cell : row) {
@@ -95,7 +113,7 @@ public class BattleGrid {
     }
 
     public boolean isEmpty(Position position) {
-        return position != null && this.grid[position.getRow()][position.getCol()] == null;
+        return position != null && !this.grid[position.getRow()][position.getCol()].isOccupied();
     }
 
     public ArrayList<Position> availablePositions(Position origin) {
@@ -108,7 +126,7 @@ public class BattleGrid {
                 for (int j = 0; j < GRID_DIMENSION; j++) {
                     Position possiblePosition = new Position(i, j);
                     if (distanceCalculator(origin, possiblePosition) <= possibleDistance &&
-                            !origin.equals(possiblePosition)) {
+                            !origin.equals(possiblePosition) && !grid[i][j].isOccupied()) {
                         availablePositions.add(possiblePosition);
                     }
                 }
@@ -134,10 +152,15 @@ public class BattleGrid {
     }
 
     public boolean playerAttack(Action action) { // TODO: needs to be written in engine; may be omitted
-        return performAction(action);
+        try {
+            return performAction(action);
+        }
+        catch (PlayerDiedException e) {
+            return false; //not possible
+        }
     }
 
-    public boolean performAction(Action action) {
+    public boolean performAction(Action action) throws PlayerDiedException{
         if (action != null) {
             Position o = action.getOrigin();
             Position d = action.getDestination();
@@ -179,9 +202,9 @@ public class BattleGrid {
         return false;
     }
 
-    public void evaluateSituation(BattleGrid grid, Position positionOfEnemy) {
+    public void evaluateSituation(Position positionOfEnemy) throws PlayerDiedException {
         Position positionOfPlayer = getPlayerPosition();
-        Enemy enemy = (Enemy) grid.getCellAt(positionOfEnemy).getEntity();
+        Enemy enemy = (Enemy) getCellAt(positionOfEnemy).getEntity();
         Enemy.AItype entityType = enemy.getEnemyAIType();
         if (entityType.equals(Enemy.AItype.MELEE)) {
             if (isNotBordering(positionOfEnemy, positionOfPlayer)) {
@@ -194,7 +217,7 @@ public class BattleGrid {
                 performAction(new Action(positionOfEnemy, positionOfPlayer, enemy.getChosenWeapon()));
             } else {
                 enemy.setEnemyAIType(Enemy.AItype.MELEE);
-                evaluateSituation(grid, positionOfEnemy);
+                evaluateSituation(positionOfEnemy);
             }
         } else if (entityType.equals(Enemy.AItype.MAGE)) {
             Mage mage = (Mage) enemy;
@@ -202,7 +225,7 @@ public class BattleGrid {
                 performAction(new Action(positionOfEnemy, positionOfPlayer, mage.getRandomSpell()));
             } else {
                 enemy.setEnemyAIType(Enemy.AItype.MELEE);
-                evaluateSituation(grid, positionOfEnemy);
+                evaluateSituation(positionOfEnemy);
             }
         }
     }
@@ -229,9 +252,8 @@ public class BattleGrid {
         return true;
     }
 
-    public void gameOver() {
-        System.out.println("You died.");
-        System.exit(0);
+    public void gameOver() throws PlayerDiedException {
+        throw new PlayerDiedException();
     }
 
     private double distanceCalculator(Position o, Position d) {

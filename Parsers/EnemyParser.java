@@ -4,6 +4,7 @@ import Entity.Enemy;
 import Entity.Mage;
 import ItemsAndSpells.Item;
 import ItemsAndSpells.Spell;
+import ItemsAndSpells.Weapon;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,9 +12,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class EnemyParser {
-    private static ArrayList<Enemy> enemies = new ArrayList<>();
+    private static ArrayList<Enemy> enemies = parseDatabase();
 
-    public void parseDatabase() {
+    public static ArrayList<Enemy> parseDatabase() {
+        ArrayList<Enemy> enemies = new ArrayList<>();
         Scanner inputStream = null;
 
         try {
@@ -40,13 +42,15 @@ public abstract class EnemyParser {
             int charisma = Integer.parseInt(splittedLine2[5]);
 
             String[] splittedLine3 = inputStream.nextLine().split("; ");
-            ArrayList<Item> inventory = ItemParser.getSelectedItems(splittedLine3);
+            ArrayList<Item> inventory = WeaponParser.getSelectedWeapons(splittedLine3);
+            inventory.add(new Item("Coins", "Golden coins of old Pheldanor that are used commonly on the island of Brandor", 1,  true));
 
             String[] splittedLine4 = inputStream.nextLine().split("; ");
             ArrayList<Integer> inventoryCount = new ArrayList<>(splittedLine4.length);
             for (int i = 0; i < splittedLine4.length; i++){
                 inventoryCount.add(Integer.parseInt(splittedLine4[i]));
             }
+            inventoryCount.add((int) (Math.random() * 150) + 1);
 
             String[] splittedLine5 = inputStream.nextLine().split("; ");
             int XP = Integer.parseInt(splittedLine5[0]);
@@ -61,6 +65,7 @@ public abstract class EnemyParser {
             }
             inputStream.nextLine();
         }
+        return enemies;
     }
 
     public static ArrayList<Enemy> getSelectedEnemies(String... names) {

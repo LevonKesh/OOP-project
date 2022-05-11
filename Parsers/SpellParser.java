@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class SpellParser {
-    private static ArrayList<Spell> spells = new ArrayList<>();
+    private static ArrayList<Spell> spells = parseDatabase();
 
-    public static void parseDatabase() {
+    public static ArrayList<Spell> parseDatabase() {
+        ArrayList<Spell> spells = new ArrayList<>();
         Scanner inputStream = null;
 
         try {
@@ -34,6 +35,7 @@ public abstract class SpellParser {
             spells.add(new Spell(name, description, spellType, value));
             inputStream.nextLine();
         }
+        return spells;
     }
 
     public static ArrayList<Spell> getSelectedSpells(String... names) {

@@ -3,6 +3,8 @@ package Entity;
 import java.util.ArrayList;
 
 import ItemsAndSpells.*;
+import Parsers.ItemParser;
+import Parsers.WeaponParser;
 
 public class Player extends Entity {
     private int availableSkillPoints = 0;
@@ -12,7 +14,13 @@ public class Player extends Entity {
     }
 
     public Player(String name, int armorClass, int hitPoints, int speed, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, ArrayList<Item> inventory, ArrayList<Integer> inventoryCount) {
-        super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, inventory, inventoryCount);
+        super(name, armorClass, hitPoints, speed, strength, dexterity, constitution, intelligence, wisdom, charisma,
+                inventory, inventoryCount);
+    }
+
+    public Player(String name) {
+        super(name, 20, 200, 4, 12, 12, 12,12, 12, 12,
+                getBasicInventory(), getBasicInventoryCount());
     }
 
     public void setChosenWeapon(int index) {
@@ -71,16 +79,33 @@ public class Player extends Entity {
     }
 
     public boolean checkForPotion() {
-        if (this.getInventory().contains(new Item("Potion", "Potion description", 50, true))) { // ToDo: needs concrete name and description for potion
+        if (this.getInventory().contains(new Item("Healing Potion",
+                "Healing potion made by the priests from the shrine of Artesha", 50,  true))) {
             return true;
         } else return false;
     }
 
     public void usePotion() {
         if (checkForPotion()) {
-            takeFromInventory(new Item("Potion", "Potion description", 50, true), 1); // ToDo: needs concrete name and description for potion
+            takeFromInventory(new Item("Healing Potion",
+                    "Healing potion made by the priests from the shrine of Artesha", 50,  true), 1);
             this.setHitPoints(this.getHitPoints() + 50);
         }
+    }
+
+    private static ArrayList<Item> getBasicInventory() {
+        ArrayList<Item> inventory = ItemParser.getSelectedItems("Coins", "Healing Potion");
+        ArrayList<Item> weapons = WeaponParser.getSelectedWeapons("Iron Sword");
+        inventory.addAll(weapons);
+        return inventory;
+    }
+
+    private static ArrayList<Integer> getBasicInventoryCount() {
+        ArrayList<Integer> inventoryCount = new ArrayList<>();
+        inventoryCount.add(300);
+        inventoryCount.add(4);
+        inventoryCount.add(1);
+        return inventoryCount;
     }
 
     @Override
