@@ -1,4 +1,6 @@
 package Engine;
 
-public class PlayerStatWindow {
+import javax.swing.*;
+
+public class PlayerStatWindow extends JFrame {
 }
