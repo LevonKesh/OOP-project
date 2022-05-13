@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Battle.Dice;
 import Entity.Entity;
 import Entity.Player;
+import ItemsAndSpells.Weapon;
 import Parsers.*;
 
 public class GameWindow extends JFrame {
@@ -16,12 +17,11 @@ public class GameWindow extends JFrame {
 
     PlayerStatWindow playerStatWindow;
     TraderWindow traderWindow;
+    InventoryWindow inventoryWindow;
 
     private JPanel mainPanel = new JPanel();
     private JTextArea storyText = new JTextArea();
     private JScrollPane scrolledText = new JScrollPane(storyText);
-
-    private JPanel battlePanel;
 
     private JLabel picture = new JLabel();
 
@@ -70,28 +70,22 @@ public class GameWindow extends JFrame {
             if (event.equals(nextButton.getText())) {
                 if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(1))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
-                    battlePanelUpdater(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(2))) {
-                    setVisible(false);
-                    // battle with 1 goblin need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
+                    entities.remove(entities.size() - 1); // to get only one goblin
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(4))) {
-                    setVisible(false);
-                    // battle with two goblins one wolf need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin", "Wolf"));
                     storyText.setText(StoryParser.parseDatabase().get(0).get(5));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(5))) {
                     storyText.setText(StoryParser.parseDatabase().get(0).get(6));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(6))) {
-                    setVisible(false);
-                    // battle with klarg need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Bugbear"));
                     storyText.setText(StoryParser.parseDatabase().get(0).get(7));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(7))) {
@@ -104,18 +98,20 @@ public class GameWindow extends JFrame {
                     storyText.setText(StoryParser.parseDatabase().get(1).get(9));
                     updateButtonsPanel(battle, persuade, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(11))) {
-                    setVisible(false);
-                    // battle with mage and cultists need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Evil Mage", "Cultist"));
                     storyText.setText(StoryParser.parseDatabase().get(1).get(12));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(12))) {
                     storyText.setText(StoryParser.parseDatabase().get(2).get(0));
-                    player.addToInventory(WeaponParser.getSelectedWeapons("Sword Of Alenduil").get(0), 1);
+                    Weapon alanduil = (Weapon) WeaponParser.getSelectedWeapons("Sword Of Alenduil").get(0);
+                    player.addToInventory(alanduil, 1);
+                    player.setChosenWeapon(alanduil);
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(10))) {
                     storyText.setText(StoryParser.parseDatabase().get(2).get(0));
-                    player.addToInventory(WeaponParser.getSelectedWeapons("Sword Of Alenduil").get(0), 1);
+                    Weapon alanduil = (Weapon) WeaponParser.getSelectedWeapons("Sword Of Alenduil").get(0);
+                    player.addToInventory(alanduil, 1);
+                    player.setChosenWeapon(alanduil);
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(2))) {
                     storyText.setText(StoryParser.parseDatabase().get(1).get(3));
@@ -170,9 +166,7 @@ public class GameWindow extends JFrame {
                     storyText.setText(StoryParser.parseDatabase().get(0).get(4));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(6))) {
-                    setVisible(false);
-                    // battle with troll need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Troll"));
                     isTrollPassed = true;
                     if (player.getInventory().contains(ItemParser.getSelectedItems("Key From Mage").get(0))) {
                         storyText.setText(StoryParser.parseDatabase().get(1).get(8));
@@ -185,16 +179,11 @@ public class GameWindow extends JFrame {
                     storyText.setText(StoryParser.parseDatabase().get(1).get(11));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(3))) {
-                    setVisible(false);
-                    // battle with cultists need to create battle here
-                    setVisible(true);
-
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Cultist", "Cultist"));
                     storyText.setText(StoryParser.parseDatabase().get(1).get(4));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(2).get(1))) {
-                    setVisible(false);
-                    // battle with dragon need to create battle here
-                    setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Dragon"));
 
                     storyText.setText(StoryParser.parseDatabase().get(2).get(2));
                     updateButtonsPanel(exitButton);
@@ -241,12 +230,12 @@ public class GameWindow extends JFrame {
 
             // TRADER
             else if (event.equals(trader.getText())) {
-//                new TraderWindow();
+                traderWindow.setVisible(true);
             }
 
             // INVENTORY
             else if (event.equals(inventory.getText())) {
-//                new InventoryWindow();
+                inventoryWindow.setVisible(true);
             }
 
             // EXIT
@@ -267,7 +256,7 @@ public class GameWindow extends JFrame {
         // Basic Player Windows generation
         playerStatWindow = new PlayerStatWindow(player);
         traderWindow = new TraderWindow(player, new Trader(player));
-
+        inventoryWindow = new InventoryWindow(player);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 700);
@@ -284,7 +273,6 @@ public class GameWindow extends JFrame {
 
         scrolledText.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrolledText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//        scrolledText.setSize(650, 450);
 
         mainPanel.add(scrolledText, BorderLayout.CENTER);
 
@@ -341,13 +329,5 @@ public class GameWindow extends JFrame {
         buttonsPanel.revalidate();
         buttonsPanel.repaint();
 
-    }
-
-    private void battlePanelUpdater(ArrayList<Entity> entities) {
-        mainPanel.setVisible(false);
-        entities.add(player);
-        battlePanel.add(new BattleWindow(entities));
-
-        setVisible(true);
     }
 }
