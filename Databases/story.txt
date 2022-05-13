@@ -1,76 +1,92 @@
 Act 1
 ---
-0 You are walking down the path that the dwarf pointed you towards.
+You are walking down the path that your old friend Dunbar the dwarf pointed you towards. As he has mentioned there
+are some dark events happening in the Phandolin and he would wait you in the city to provide additional details.
 You can already see Phandolin in the distance: the small city that hosts the shrine of Eridel, the goddess of prosperity.
 Suddenly you see a horse, laying down on the side of the road. You notice the horse is on its dying breath.
 Do you decide to go closer, or investigate the area around?
 ---
-1 Goblin ambush
+You get closer to the horse and see that it was killed by two ugly arrows. You remember that you have seen such arrows
+when travelling in the dwarven tunnels. Suddenly it strikes your mind. Goblin arrows. At the same moment you notice an
+arrow coming in your side. You quickly move away and see two goblins in the distance.
 ---
-2 investigation success
+Trying to be cautious you move slowly and watch after your each step. Something inside you tells you that there is
+someone nearby watching after you, waiting till you loose your attention. You get closer to the horse and notice a dark
+goblin arrow. And in the woods you see the sparkling eyes waiting for you. But until he gets what's happening you quickly
+grab your sword and kill it. The other one that comes at your side is also quickly slain with an elegant move.
 ---
-3 The traces of the goblins footprints direct your gaze into the cave nearby. Walking into it you start hearing noises.
+The traces of the goblins footprints direct your gaze into the cave nearby. Walking into it you start hearing noises.
 They appear to be voices of two more goblins talking. You proceed to eavesdrop on the conversation and learn about their
-boss Clarg and his orders to loot caravans until they catch․․. Goblin's conversation stops when they hear your footsteps.
+boss Klarg and his orders to loot caravans until they catch․․. Goblin's conversation stops when they hear your footsteps.
 ---
-4 Attacks goblins
+You grab your sword and quickly move into the goblins chopping one of them with quick attacks. However, all the other
+goblins surround you with a white wold near them. "It would be a tough fight", you think.
 ---
-5 You reach the end of the cave
+Making slow movements you elegantly pass all the goblins without making a big noice. In the end of the tunnel you see
+Klarg himself. It's a giant bugbear that gives orders to goblins.
 ---
-6 Klarg starts confronting you for ruining his plans and killing his units, your battle with Klarg commences.
+Klarg quickly notices you and starts confronting you for ruining his plans and killing his units. It seems that it is
+impossible to avoid a battle this time.
 ---
-7 After defeating Klarg you see a scroll dropped from his body, Reading from the scroll you learn that Klarg was ordered
-to catch Dumbar. You then exit the cave and go towards Phandolin.
+After defeating Klarg you see a scroll dropped from his body, Reading from the scroll you learn that Klarg was ordered
+to catch Dunbar. But who might have wanted to kill that pure dwarf. It seems that you will need to unravel the secrets
+of Phandolin all alone.
+You then exit the cave and go towards Phandolin.
 -
 Act 2
 ---
-0 Upon reaching the Aleswell Inn you overhear a halfwit screaming about the local shrine getting raided
+Upon reaching the Aleswell Inn you talk with the innkeeper to understand what kind of news he has. He tells you that
+local halfswit has gone insance, well more than usual, and screams about the dark magic all the day. He also tells you
+about the story of poor hakfking Thom whose parents got killed yesterday and who asks everybody to look into their family farm.
+As the halfling claims it is cursed with a monster living under the farm.
 ---
-1 The halfwit goes on about how a group of cultists entered the shrine and started looting and raiding everything in it.
+Deciding to come to halfling you get out of the inn and quickly understand where the halfwit is from all the screams that
+he makes. The halfwit goes on about how a group of cultists entered the shrine and started looting and raiding everything in it.
 He managed to escape but the priestess is still in the shrine, heavily wounded.
 ---
-2 When you set to leave for the shrine to investigate further, you overhear how a halfling describes how a group of orcs
-entered his house and massacred his family. Barely escaping he rushed towards the inn for help.
+When you get closer to the Alderleaf farm you you overhear how a halfling describing to locals how an enormous monster
+entered his house from under the earth and massacred his family. Barely escaping he rushed towards the city for help.
 ---
-3 You decide to investigate the shrine first and upon reaching the entrance you see the priestess on her last breath.
+You decide to investigate the shrine and upon reaching the entrance you see the priestess on her last breath.
 She offers you some potions of health in exchange for your willingness to save the shrine. You then enter the shrine and
 see 2 orcs and 3 cultists violently looting the shrine. You rush to attack them
 ---
-4 After finishing off the cultists you find a key from one of them along with a note from an unknown person that says the
+After finishing off the cultists you find a key from one of them along with a note from an unknown person that says the
 city is going to get invaded soon.
 ---
-5 You then rush to the Inn to inform the halfwit about the situation in the shrine, and immediately go towards the halfing's house.
-
+You then rush to the Inn to inform the halfwit about the situation in the shrine, and immediately go towards the halfing's house.
 ---
-6 Upon reaching the house you discover the family of the halfling dead as well as a troll laying dead next to them. You then see a tunnel
-dug under the house. The tunnel is closed with a trapdoor which has a keyhole in it
+Upon reaching the house you discover the family of the halfling dead as well as a huge troll sitting next to them.
+You then see a tunnel dug under the house. The tunnel is closed with a trapdoor which has a keyhole in it.
+However, the troll also notices you and without a hesitations starts to scream
+"food" and runs towards you.
 ---
 7 You try to open the trapdoor but are unsuccessful.
 ---
 8 You reach for the trapdoor and notice it's locked, you then try the key you got from one of the cultists and it fits.
 ---
-9 As the door slams open you see a mage in the tunnel, chanting a spell. You go closer and as soon as he notices you, he turns
+As the door slams open you see a mage in the tunnel, chanting a spell. You go closer and as soon as he notices you, he turns
 "You have been disturbing our plans but the return of Azeroth is inevitable. We just need the sacrifice of more halfling blood and his
 true form will be reached."
 ---
-10 You talk to the mage about how countless sacrifices are never worth it, no matter the cause. Your words sound strong and trustworthy
+You talk to the mage about how countless sacrifices are never worth it, no matter the cause. Your words sound strong and trustworthy
 and you manage to persuade the mage at last.
 ---
-11 You try to talk the mage out of the ritual but he immediately attacks you so you are left with no other choice.
+You try to talk the mage out of the ritual but he immediately attacks you. So you are left with no other choice.
 ---
-12 The scroll the mage carried was that of Azeroth, the ancient god-dragon, and the embodiment of pure evil.
+The scroll the mage carried was that of Azeroth, the ancient god-dragon, and the embodiment of pure evil.
 -
 Act 3
 ---
-0 Wanting to stop Azeroth you rush through the tunnel to the sounds of roars that come from the forest. On your way you see the
+Wanting to stop Azeroth you rush through the tunnel to the sounds of roars that come from the forest. On your way you see the
 guardian of the forest, the druid Jin'alun. He says that his powers have already faded from the previous attempt of battling the dragon.
 He then hands you the Sword of Alenduil, the legendary weapon that was once used to defeat Azeroth.
 ---
-1 You Proceed to the Thunder Tree the biggest and oldest tree in the forest, around it you see the encampment of cultists and
+You Proceed to the Thunder Tree the biggest and oldest tree in the forest, around it you see the encampment of cultists and
 the half-flesh half-skeletal form of Azeroth. Upon encounter Azeroth lets off a loud roar, and starts flapping its wings.
 You unsheathe the  Sword of Alenduil, leaving the sheathe on the floor and rush towards the dragon.
 ---
-2 Good job. You won against Azeroth and the humanity is saved once again thanks to your efforts.
+Good job. You won against Azeroth and the humanity is saved once again thanks to your efforts.
 -
 
 
