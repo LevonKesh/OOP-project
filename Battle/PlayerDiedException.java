@@ -2,7 +2,7 @@ package Battle;
 
 public class PlayerDiedException extends Exception{
     public PlayerDiedException() {
-        super("Player died.");
+        super("You died.");
     }
 
     public PlayerDiedException(String message) {

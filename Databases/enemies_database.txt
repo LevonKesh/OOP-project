@@ -1,54 +1,54 @@
-Goblin; 10; 75; 4
+Goblin; 10; 20; 4
 12; 13; 7; 5; 5; 4
 Iron Sword
 1
 200; MELEE
 
-Goblin; 10; 75; 4
+Goblin; 10; 20; 4
 12; 13; 7; 5; 5; 4
 Iron Sword; Bow
 1; 1
 200; RANGED
 
-Wolf; 5; 50; 6
+Wolf; 5; 15; 6
 8; 10; 6; 1; 0; 0
 Claw
 1
 125; MELEE
 
-Bugbear; 14; 125; 3
+Bugbear; 14; 25; 3
 14; 7; 10; 8; 7; 6
 Iron Mace; Crossbow
 1; 1
 450; RANGED
 
-Orc; 12; 125; 3
+Orc; 12; 25; 3
 12; 8; 10; 8; 7; 5
 Iron Mace
 1
 400; MELEE
 
-Cultist; 11; 100; 3
+Cultist; 11; 18; 3
 10; 10; 8; 12; 10; 12
 Iron Knife
 1
 550; MAGE
 Frost Hands; Healing
 
-Troll; 17; 200; 2
+Troll; 17; 35; 2
 17; 13; 12; 6; 1; 0
 Giant Club
 1
 1000; MELEE
 
-Evil Mage; 11; 150; 3
+Evil Mage; 11; 30; 3
 12; 11; 10; 19; 17; 15
 Magical Mace
 1
 1400; MAGE
 Frost Hands; Fireball; Lightning; Healing
 
-Dragon; 20; 300; 2
+Dragon; 20; 40; 2
 17; 3; 20; 17; 20; 19
 Dragon Claws; Dragon Tail
 1; 1

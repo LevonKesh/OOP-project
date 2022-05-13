@@ -139,17 +139,13 @@ public class Entity implements Cloneable {
     public ArrayList<Item> getInventory() {
         ArrayList<Item> newInventory = new ArrayList<Item>();
         for (int i = 0; i < this.inventory.size(); i++) {
-            newInventory.add(i, this.inventory.get(i).clone());
+            newInventory.add(this.inventory.get(i).clone());
         }
         return newInventory;
     }
 
     public ArrayList<Integer> getInventoryCount() {
-        ArrayList<Integer> newInventoryCount = new ArrayList<>();
-        for (int i = 0; i < this.inventoryCount.size(); i++) {
-            newInventoryCount.add(i, this.inventoryCount.get(i));
-        }
-        return newInventoryCount;
+        return (ArrayList<Integer>) this.inventoryCount.clone();
     }
 
     public void addToInventory(Item newItem, int count) {
@@ -165,7 +161,7 @@ public class Entity implements Cloneable {
     public void takeFromInventory(Item item, int count) {
         if (this.inventory.contains(item) &&
                 this.inventoryCount.get(this.inventory.indexOf(item)) >= count &&
-                item.isSellable() && item.isLootable()) {
+                item.isSellable()) {
             int index = this.inventory.indexOf(item);
             this.inventoryCount.set(index, this.inventoryCount.get(index) - count);
             if (this.inventoryCount.get(index) == 0) {

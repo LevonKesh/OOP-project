@@ -1,7 +1,6 @@
 package Engine;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +14,14 @@ import Parsers.*;
 public class GameWindow extends JFrame {
     private Player player;
 
+    PlayerStatWindow playerStatWindow;
+    TraderWindow traderWindow;
+
     private JPanel mainPanel = new JPanel();
     private JTextArea storyText = new JTextArea();
     private JScrollPane scrolledText = new JScrollPane(storyText);
+
+    private JPanel battlePanel;
 
     private JLabel picture = new JLabel();
 
@@ -65,11 +69,8 @@ public class GameWindow extends JFrame {
             //NEXT BUTTON
             if (event.equals(nextButton.getText())) {
                 if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(1))) {
-                    GameWindow.this.setVisible(false);
-                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin","Goblin"));
-                    entities.add(player);
-                    new BattleWindow(entities);
-                    GameWindow.this.setVisible(true);
+                    ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
+                    battlePanelUpdater(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(2))) {
@@ -252,12 +253,20 @@ public class GameWindow extends JFrame {
             else if (event.equals(exitButton.getText())) {
                 System.exit(0);
             }
+
+            else if (event.equals(playerStats.getText())) {
+                playerStatWindow.setVisible(true);
+            }
         }
     }
 
     public GameWindow(Player player) {
         super("Quest to Phandolin");
         this.player = player;
+
+        // Basic Player Windows generation
+        playerStatWindow = new PlayerStatWindow(player);
+        traderWindow = new TraderWindow(player, new Trader(player));
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -325,7 +334,6 @@ public class GameWindow extends JFrame {
         for (int i = 0; i < buttons1.length; i++) {
             if (buttons1[i] != null) {
                 buttons1[i].setAlignmentY(Component.CENTER_ALIGNMENT);
-//                buttons[i].setSize(150, 25);
                 buttonsPanel.add(buttons1[i]);
             }
         }
@@ -333,5 +341,13 @@ public class GameWindow extends JFrame {
         buttonsPanel.revalidate();
         buttonsPanel.repaint();
 
+    }
+
+    private void battlePanelUpdater(ArrayList<Entity> entities) {
+        mainPanel.setVisible(false);
+        entities.add(player);
+        battlePanel.add(new BattleWindow(entities));
+
+        setVisible(true);
     }
 }
