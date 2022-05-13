@@ -11,6 +11,8 @@ public class PlayerStatWindow extends JFrame {
     private Player player;
 
     JPanel attrs;
+    JButton HP;
+    JButton HPValue;
     JButton strength;
     JButton strengthValue;
     JButton dexterity;
@@ -74,12 +76,16 @@ public class PlayerStatWindow extends JFrame {
     public PlayerStatWindow(Player player) {
         super("Player statistics");
         this.player = player;
-        setSize(280, 210);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(280, 240);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLayout(new FlowLayout());
 
-        attrs = new JPanel(new GridLayout(6, 2));
+        attrs = new JPanel(new GridLayout(7, 2));
+        HP = new JButton("HP");
+        attrs.add(HP);
+        HPValue = new JButton(String.valueOf(player.getHitPoints()));
+        attrs.add(HPValue);
         strength = new JButton("Strength");
         strength.addActionListener(new Listener());
         attrs.add(strength);

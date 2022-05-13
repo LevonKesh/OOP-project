@@ -109,7 +109,7 @@ public class TraderWindow extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    private void setPlayerInventory() {
+    public void setPlayerInventory() {
         playerInventory.removeAll();
         for (int i = 0; i < player.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
@@ -122,7 +122,7 @@ public class TraderWindow extends JFrame {
         playerInventory.repaint();
     }
 
-    private void setTraderInventory() {
+    public void setTraderInventory() {
         traderInventory.removeAll();
         for (int i = 0; i < trader.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(trader.getInventory().get(i).getName());

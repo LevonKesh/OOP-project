@@ -151,15 +151,6 @@ public class BattleGrid {
         return false;
     }
 
-    public boolean playerAttack(Action action) { // TODO: needs to be written in engine; may be omitted
-        try {
-            return performAction(action);
-        }
-        catch (PlayerDiedException e) {
-            return false; //not possible
-        }
-    }
-
     public boolean performAction(Action action) throws PlayerDiedException{
         if (action != null) {
             Position o = action.getOrigin();
@@ -245,7 +236,7 @@ public class BattleGrid {
 
     public boolean isNotBordering(Position o, Position d) {
         if (o != null && d != null) {
-            if ((Math.abs(o.getRow() - d.getRow()) == 1) && (Math.abs(o.getCol() - d.getCol()) == 1)) {
+            if ((Math.abs(o.getRow() - d.getRow()) <= 1) && (Math.abs(o.getCol() - d.getCol()) <= 1)) {
                 return false;
             }
         }

@@ -55,7 +55,7 @@ public class InventoryWindow extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    private void updateInventory() {
+    public void updateInventory() {
         inventory.removeAll();
         for (int i = 0; i < this.player.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
