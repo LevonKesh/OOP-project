@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,5 +25,7 @@ public class DeathWindow extends JFrame {
                 System.exit(0);
             }
         });
+        this.setLocationRelativeTo(null);
+        setVisible(true);
     }
 }

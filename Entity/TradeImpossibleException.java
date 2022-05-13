@@ -1,4 +1,4 @@
-package Engine;
+package Entity;
 
 public class TradeImpossibleException extends Exception {
     public TradeImpossibleException() {

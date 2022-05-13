@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
 
@@ -74,9 +74,8 @@ public class StartingWindow extends JFrame {
     add(new JLabel());
     add(mainPanel);
     add(new JLabel());
-    // submit button
 
+    this.setLocationRelativeTo(null);
     setVisible(true);
-    // End of the window
   }
 }

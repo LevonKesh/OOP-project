@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
 
@@ -118,6 +118,8 @@ public class PlayerStatWindow extends JFrame {
         skillPoints.setSize(new Dimension(100, 100));
         skillPoints.setHorizontalAlignment(SwingConstants.CENTER);
         add(skillPoints);
+
+        this.setLocationRelativeTo(null);
     }
 
 }

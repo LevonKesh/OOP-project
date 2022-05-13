@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Battle.*;
 import Battle.Action;
@@ -55,6 +55,8 @@ public class BattleWindow extends JFrame {
         this.add(new JLabel());
         this.add(battlePanel);
         this.add(new JLabel());
+
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

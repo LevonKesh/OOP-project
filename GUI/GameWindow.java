@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Battle.Dice;
 import Entity.Entity;
 import Entity.Player;
+import Entity.Trader;
 import ItemsAndSpells.Weapon;
 import Parsers.*;
 
@@ -70,15 +71,18 @@ public class GameWindow extends JFrame {
             if (event.equals(nextButton.getText())) {
                 if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(1))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(2))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin"));
                     entities.remove(entities.size() - 1); // to get only one goblin
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(3));
                     updateButtonsPanel(battle, stealth, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(4))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Goblin", "Wolf"));
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(5));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(5))) {
@@ -86,6 +90,7 @@ public class GameWindow extends JFrame {
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(6))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Bugbear"));
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(0).get(7));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(0).get(7))) {
@@ -99,6 +104,7 @@ public class GameWindow extends JFrame {
                     updateButtonsPanel(battle, persuade, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(11))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Evil Mage", "Cultist"));
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(1).get(12));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(12))) {
@@ -167,6 +173,7 @@ public class GameWindow extends JFrame {
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(6))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Troll"));
+                    new BattleWindow(entities);
                     isTrollPassed = true;
                     if (player.getInventory().contains(ItemParser.getSelectedItems("Key From Mage").get(0))) {
                         storyText.setText(StoryParser.parseDatabase().get(1).get(8));
@@ -180,11 +187,12 @@ public class GameWindow extends JFrame {
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(1).get(3))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Cultist", "Cultist"));
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(1).get(4));
                     updateButtonsPanel(nextButton, inventory, playerStats);
                 } else if (storyText.getText().equals(StoryParser.parseDatabase().get(2).get(1))) {
                     ArrayList<Entity> entities = new ArrayList<Entity>(EnemyParser.getSelectedEnemies("Dragon"));
-
+                    new BattleWindow(entities);
                     storyText.setText(StoryParser.parseDatabase().get(2).get(2));
                     updateButtonsPanel(exitButton);
                 }
@@ -305,8 +313,8 @@ public class GameWindow extends JFrame {
 
         add(rightPanel);
 
+        this.setLocationRelativeTo(null);
         setVisible(true);
-
     }
 
     private void updateButtonsPanel(JButton... buttons1) {

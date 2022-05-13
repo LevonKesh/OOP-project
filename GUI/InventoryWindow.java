@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
 import ItemsAndSpells.Item;
@@ -52,7 +52,7 @@ public class InventoryWindow extends JFrame {
         updateInventory();
         add(inventory);
 
-        setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     private void updateInventory() {
