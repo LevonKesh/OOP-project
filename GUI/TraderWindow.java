@@ -1,6 +1,8 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
+import Entity.TradeImpossibleException;
+import Entity.Trader;
 import ItemsAndSpells.Item;
 import Parsers.ItemParser;
 import Parsers.WeaponParser;
@@ -9,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
 
@@ -105,10 +106,10 @@ public class TraderWindow extends JFrame {
         setTraderInventory();
         add(traderInventory);
 
-        setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
-    private void setPlayerInventory() {
+    public void setPlayerInventory() {
         playerInventory.removeAll();
         for (int i = 0; i < player.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
@@ -121,7 +122,7 @@ public class TraderWindow extends JFrame {
         playerInventory.repaint();
     }
 
-    private void setTraderInventory() {
+    public void setTraderInventory() {
         traderInventory.removeAll();
         for (int i = 0; i < trader.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(trader.getInventory().get(i).getName());

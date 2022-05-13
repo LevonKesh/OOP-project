@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import javax.swing.*;
 
@@ -12,6 +12,8 @@ public class ErrorWindow extends JFrame{
         text.setText(textOfError);
         text.setHorizontalAlignment(JLabel.CENTER);
         add(text);
+
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 

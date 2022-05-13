@@ -1,12 +1,10 @@
-package Engine;
+package Entity;
 
-import Entity.Player;
 import ItemsAndSpells.Item;
 import Parsers.ItemParser;
 import Parsers.WeaponParser;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Trader {
     private Player player;

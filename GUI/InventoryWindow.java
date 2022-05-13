@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
 import ItemsAndSpells.Item;
@@ -52,10 +52,10 @@ public class InventoryWindow extends JFrame {
         updateInventory();
         add(inventory);
 
-        setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
-    private void updateInventory() {
+    public void updateInventory() {
         inventory.removeAll();
         for (int i = 0; i < this.player.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());

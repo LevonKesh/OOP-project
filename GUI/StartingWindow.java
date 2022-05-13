@@ -1,4 +1,4 @@
-package Engine;
+package GUI;
 
 import Entity.Player;
 
@@ -46,19 +46,22 @@ public class StartingWindow extends JFrame {
     setResizable(false);
     setLayout(new FlowLayout());
 
+
+    //The images
+    Image image = new ImageIcon("GFX\\logo.png").getImage();
+    image = image.getScaledInstance(250, 150, Image.SCALE_SMOOTH);
+    ImageIcon icon = new ImageIcon("GFX\\icon.png");
+    this.setIconImage(icon.getImage());
     mainPanel.setLayout(new BorderLayout());
 
-    JLabel infoPanel = new JLabel("Welcome to the game of quest of Phandolin.");
-    infoPanel.setVisible(true);
+    JLabel infoPanel = new JLabel("Welcome to the quest of Phandolin.");
+    infoPanel.setIcon((new ImageIcon(image)));
+    infoPanel.setHorizontalTextPosition(JLabel.CENTER);
+    infoPanel.setVerticalTextPosition(JLabel.BOTTOM);
+    infoPanel.setVerticalAlignment(JLabel.BOTTOM);
     mainPanel.add(infoPanel, BorderLayout.NORTH);
-    // Icons Here
-    // TODO: should add an icon to Jlabel and put it at the top
-    // Start button
+
     startButton.addActionListener(new startListener());
-    startButton.setVisible(true);
-    Image origImage = new ImageIcon("GFX/start.png").getImage();
-    Image scaledImage = origImage.getScaledInstance(100,100,Image.SCALE_SMOOTH);
-    startButton.setIcon(new ImageIcon(scaledImage));
     startButton.setSize(new Dimension(100,100));
     mainPanel.add(startButton, BorderLayout.CENTER);
 
@@ -74,9 +77,8 @@ public class StartingWindow extends JFrame {
     add(new JLabel());
     add(mainPanel);
     add(new JLabel());
-    // submit button
 
+    this.setLocationRelativeTo(null);
     setVisible(true);
-    // End of the window
   }
 }
