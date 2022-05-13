@@ -24,53 +24,62 @@ public class PlayerStatWindow extends JFrame {
     JButton charisma;
     JButton charismaValue;
 
-    JLabel skillpoints;
+    JLabel skillPoints;
 
     private class Listener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             String name = e.getActionCommand();
-            if (Integer.parseInt(skillpoints.getText()) > 0) {
+            if (Integer.parseInt(skillPoints.getText()) > 0) {
                 switch (name) {
                     case ("Strength"):
                         player.setStrength(player.getStrength() + 1);
                         player.addSkillPoints(-1);
                         strengthValue.setText(String.valueOf(player.getStrength()));
+                        break;
                     case ("Dexterity"):
                         player.setDexterity(player.getDexterity() + 1);
                         player.addSkillPoints(-1);
-                        strengthValue.setText(String.valueOf(player.getDexterity()));
+                        dexterityValue.setText(String.valueOf(player.getDexterity()));
+                        break;
                     case ("Constitution"):
                         player.setConstitution(player.getConstitution() + 1);
                         player.addSkillPoints(-1);
-                        strengthValue.setText(String.valueOf(player.getConstitution()));
+                        constitutionValue.setText(String.valueOf(player.getConstitution()));
+                        break;
                     case ("Intelligence"):
                         player.setIntelligence(player.getIntelligence() + 1);
                         player.addSkillPoints(-1);
-                        strengthValue.setText(String.valueOf(player.getIntelligence()));
+                        intelligenceValue.setText(String.valueOf(player.getIntelligence()));
+                        break;
                     case ("Wisdom"):
                         player.setWisdom(player.getWisdom() + 1);
                         player.addSkillPoints(-1);
-                        strengthValue.setText(String.valueOf(player.getWisdom()));
+                        wisdomValue.setText(String.valueOf(player.getWisdom()));
+                        break;
                     case ("Charisma"):
                         player.setCharisma(player.getCharisma() + 1);
                         player.addSkillPoints(-1);
-                        strengthValue.setText(String.valueOf(player.getCharisma()));
-                        skillpoints.setText(String.valueOf(player.getAvailableSkillPoints()));
+                        charismaValue.setText(String.valueOf(player.getCharisma()));
+                        break;
                 }
+                skillPoints.setText(String.valueOf(player.getAvailableSkillPoints()));
+                PlayerStatWindow.this.revalidate();
+                PlayerStatWindow.this.repaint();
             }
         }
     }
 
     public PlayerStatWindow(Player player) {
         super("Player statistics");
-        setSize(500, 400);
+        this.player = player;
+        setSize(280, 210);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(new FlowLayout());
 
-        attrs = new JPanel(new GridLayout());
+        attrs = new JPanel(new GridLayout(6, 2));
         strength = new JButton("Strength");
         strength.addActionListener(new Listener());
         attrs.add(strength);
@@ -103,11 +112,12 @@ public class PlayerStatWindow extends JFrame {
         attrs.add(charismaValue);
 
         add(attrs);
-        JLabel skillpoints = new JLabel(String.valueOf(player.getAvailableSkillPoints()));
-        add(skillpoints);
 
-        setVisible(true);
-
+        skillPoints = new JLabel(String.valueOf(this.player.getAvailableSkillPoints()));
+        skillPoints.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 47));
+        skillPoints.setSize(new Dimension(100, 100));
+        skillPoints.setHorizontalAlignment(SwingConstants.CENTER);
+        add(skillPoints);
     }
 
 }

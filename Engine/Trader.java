@@ -6,6 +6,7 @@ import Parsers.ItemParser;
 import Parsers.WeaponParser;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Trader {
     private Player player;
@@ -13,14 +14,14 @@ public class Trader {
     private ArrayList<Item> inventory;
     private ArrayList<Integer> inventoryCount;
 
-    private static final Item coin = new Item("Coin", "Golden coins of old Pheldanor that are used commonly in the island of Brandor",
-            1, true);
+    private static final Item coin = ItemParser.getSelectedItems("Coins").get(0);
 
     public Trader(Player player, ArrayList<Item> inventory, ArrayList<Integer> inventoryCount) {
         this.player = player;
         this.inventory = inventory;
         this.inventoryCount = inventoryCount;
     }
+
     public Trader(Player player) {
         this.player = player;
         this.inventory = new ArrayList<>();
@@ -28,7 +29,7 @@ public class Trader {
 
         addToInventory(WeaponParser.getSelectedWeapons("Iron Sword").get(0), 4);
         addToInventory(coin, 3000);
-        addToInventory(ItemParser.getSelectedItems("Health Potion").get(0), 20);
+        addToInventory(ItemParser.getSelectedItems("Healing Potion").get(0), 20);
     }
 
     public ArrayList<Item> getInventory() {
@@ -51,8 +52,13 @@ public class Trader {
         return interactionCount;
     }
 
-    public void setInteractionCount(int interactionCount) {
-        this.interactionCount = interactionCount;
+    public void setInteractionCount(int interactionCount) throws TradeImpossibleException{
+        if (interactionCount >= 0) {
+            this.interactionCount = interactionCount;
+        }
+        else {
+            throw new TradeImpossibleException("Interaction count incorrect");
+        }
     }
 
     // maybe needs to be written in other way; in parent class for both trader and entity
@@ -69,7 +75,7 @@ public class Trader {
     public void takeFromInventory(Item item, int count) {
         if (this.inventory.contains(item) &&
                 this.inventoryCount.get(this.inventory.indexOf(item)) >= count &&
-                item.isSellable() && item.isLootable()) {
+                item.isSellable()) {
             int index = this.inventory.indexOf(item);
             this.inventoryCount.set(index, this.inventoryCount.get(index) - count);
             if (this.inventoryCount.get(index) == 0) {
@@ -85,7 +91,10 @@ public class Trader {
         return inventory.get(index);
     }
 
-    public void sellToTrader(Item item) {
+    public void sellToTrader(Item item) throws TradeImpossibleException {
+        if (!this.getInventory().contains(coin)) {
+            throw new TradeImpossibleException("Trader does not have  any money left to buy anything.");
+        }
         if (item.getValue() * interactionCount <= inventoryCount.get(inventory.indexOf(coin))) {
             player.takeFromInventory(item, interactionCount);
             player.addToInventory(coin, item.getValue() * interactionCount);
@@ -93,19 +102,22 @@ public class Trader {
             takeFromInventory(coin, item.getValue() * interactionCount);
         }
         else {
-            System.out.println("Trader does not have enough money.");
+            throw new TradeImpossibleException("Trader does not have enough money to buy " + item.getName().toLowerCase() + ".");
         }
     }
 
-    public void buyFromTrader(Item item) {
-        if (item.getValue() * interactionCount <= player.getInventoryCount().get(inventory.indexOf(coin))) {
+    public void buyFromTrader(Item item) throws TradeImpossibleException{
+        if (!player.getInventory().contains(coin)) {
+            throw new TradeImpossibleException("You do not have money to buy anything.");
+        }
+        else if (item.getValue() * interactionCount <= player.getInventoryCount().get(player.getInventory().indexOf(coin))) {
             player.addToInventory(item, interactionCount);
             player.takeFromInventory(coin, item.getValue() * interactionCount);
             takeFromInventory(item, interactionCount);
             addToInventory(coin, item.getValue() * interactionCount);
         }
         else {
-            System.out.println("You do not have enough money to buy the item.");
+            throw new TradeImpossibleException("You do not have enough money to buy " + item.getName().toLowerCase() + ".");
         }
     }
 }

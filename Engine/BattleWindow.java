@@ -158,11 +158,10 @@ public class BattleWindow extends JFrame {
                 case "Goblin" -> this.setIcon(new ImageIcon("GFX/goblin.jpg"));
                 case "Cultist" -> this.setIcon(new ImageIcon("GFX/cultist.jpg"));
                 case "Dragon" -> this.setIcon(new ImageIcon("GFX/dragon.jpg"));
-                case "Hero" -> this.setIcon(new ImageIcon("GFX/hero.jpg"));
                 case "Mage" -> this.setIcon(new ImageIcon("GFX/mage.jpg"));
                 case "Orc" -> this.setIcon(new ImageIcon("GFX/orc.jpg"));
                 case "Troll" -> this.setIcon(new ImageIcon("GFX/troll.jpg"));
-                default -> this.setIcon(new ImageIcon("GFX/hero.png"));
+                default -> this.setIcon(new ImageIcon("GFX/hero.jpg"));
             }
         }
 

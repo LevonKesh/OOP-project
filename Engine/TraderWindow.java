@@ -17,9 +17,10 @@ public class TraderWindow extends JFrame {
     private Trader trader;
     private Player player;
 
-    private JPanel playerInventory;
-    private JPanel traderInventory;
-    private JTextField count;
+    private JPanel playerInventory = new JPanel();
+    private JPanel traderInventory = new JPanel();
+    private JLabel countText = new JLabel();
+    private JTextField count = new JTextField();
 
     private class BuyingListener implements ActionListener {
 
@@ -37,9 +38,14 @@ public class TraderWindow extends JFrame {
                 int itemCount = Integer.parseInt(count.getText());
                 trader.setInteractionCount(itemCount);
                 trader.buyFromTrader(reqItem);
+                setPlayerInventory();
+                setTraderInventory();
 
-            } catch (NumberFormatException E) {
+            } catch (NumberFormatException e1) {
                 count.setText("Incorrect Format");
+            }
+            catch (TradeImpossibleException e2) {
+                new ErrorWindow(e2.getMessage());
             }
         }
     }
@@ -60,9 +66,15 @@ public class TraderWindow extends JFrame {
                 int itemCount = Integer.parseInt(count.getText());
                 trader.setInteractionCount(itemCount);
                 trader.sellToTrader(reqItem);
+                setPlayerInventory();
+                setTraderInventory();
 
-            } catch (NumberFormatException E) {
+            }
+            catch (NumberFormatException E) {
                 count.setText("Incorrect Format");
+            }
+            catch (TradeImpossibleException e2) {
+                new ErrorWindow(e2.getMessage());
             }
         }
     }
@@ -72,25 +84,32 @@ public class TraderWindow extends JFrame {
         this.player = player;
         this.trader = trader;
 
-        setSize(600, 850);
+        setSize(700, 200);
         setResizable(false);
         setLayout(new FlowLayout());
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-        playerInventory.setLayout(new GridLayout(player.getInventory().size(), 2));
+        playerInventory.setLayout(new GridLayout(this.player.getInventory().size(), 2));
 
         for (int i = 0; i < player.getInventory().size(); i++) {
-            JButton inventoryItem = new JButton(player.getInventory().get(i).getName());
+            JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
             inventoryItem.addActionListener(new SellingListener());
             playerInventory.add(inventoryItem);
-            JButton inventoryItemCount = new JButton(String.valueOf(player.getInventoryCount().get(i)));
+            JButton inventoryItemCount = new JButton(String.valueOf(this.player.getInventoryCount().get(i)));
             playerInventory.add(inventoryItemCount);
         }
         add(playerInventory);
 
-        add(count);
+        JPanel centralPanel = new JPanel(new BorderLayout());
+        countText.setText("Insert the count of items here:");
+        centralPanel.add(countText, BorderLayout.NORTH);
+        count.setText("0");
+        count.setSize(300, 200);
+        centralPanel.add(count, BorderLayout.SOUTH);
+        centralPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        add(centralPanel);
 
-        playerInventory.setLayout(new GridLayout(player.getInventory().size(), 2));
+        traderInventory.setLayout(new GridLayout(trader.getInventory().size(), 2));
 
         for (int i = 0; i < trader.getInventory().size(); i++) {
             JButton inventoryItem = new JButton(trader.getInventory().get(i).getName());
@@ -103,5 +122,31 @@ public class TraderWindow extends JFrame {
         add(traderInventory);
 
         setVisible(true);
+    }
+
+    private void setPlayerInventory() {
+        playerInventory.removeAll();
+        for (int i = 0; i < player.getInventory().size(); i++) {
+            JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
+            inventoryItem.addActionListener(new SellingListener());
+            playerInventory.add(inventoryItem);
+            JButton inventoryItemCount = new JButton(String.valueOf(this.player.getInventoryCount().get(i)));
+            playerInventory.add(inventoryItemCount);
+        }
+        playerInventory.revalidate();
+        playerInventory.repaint();
+    }
+
+    private void setTraderInventory() {
+        traderInventory.removeAll();
+        for (int i = 0; i < trader.getInventory().size(); i++) {
+            JButton inventoryItem = new JButton(trader.getInventory().get(i).getName());
+            inventoryItem.addActionListener(new BuyingListener());
+            traderInventory.add(inventoryItem);
+            JButton traderInventoryCount = new JButton(String.valueOf(trader.getInventoryCount().get(i)));
+            traderInventory.add(traderInventoryCount);
+        }
+        traderInventory.revalidate();
+        traderInventory.repaint();
     }
 }
