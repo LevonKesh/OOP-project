@@ -11,7 +11,7 @@ public class Main {
         Player player = new Player("Valod");
         player.addSkillPoints(5);
 //        entities.add(player);
-        TraderWindow traderWindow = new TraderWindow(player, new Trader(player));
+        new InventoryWindow(player);
 //        new PlayerStatWindow(player);
 //        new GameWindow(player);
     }

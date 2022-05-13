@@ -34,18 +34,17 @@ public class TraderWindow extends JFrame {
             else {
                 reqItem = WeaponParser.getSelectedWeapons(itemName).get(0);
             }
-            try {
-                int itemCount = Integer.parseInt(count.getText());
-                trader.setInteractionCount(itemCount);
-                trader.buyFromTrader(reqItem);
-                setPlayerInventory();
-                setTraderInventory();
+            if (reqItem != null) {
+                try {
+                    int itemCount = Integer.parseInt(count.getText());
+                    trader.setInteractionCount(itemCount);
+                    trader.buyFromTrader(reqItem);
+                    setPlayerInventory();
+                    setTraderInventory();
 
-            } catch (NumberFormatException e1) {
-                count.setText("Incorrect Format");
-            }
-            catch (TradeImpossibleException e2) {
-                new ErrorWindow(e2.getMessage());
+                } catch (NumberFormatException | TradeImpossibleException e1) {
+                    new ErrorWindow(e1.getMessage());
+                }
             }
         }
     }
@@ -62,19 +61,19 @@ public class TraderWindow extends JFrame {
             else {
                 reqItem = WeaponParser.getSelectedWeapons(itemName).get(0);
             }
-            try {
-                int itemCount = Integer.parseInt(count.getText());
-                trader.setInteractionCount(itemCount);
-                trader.sellToTrader(reqItem);
-                setPlayerInventory();
-                setTraderInventory();
+            if (reqItem != null) {
+                try {
+                    int itemCount = Integer.parseInt(count.getText());
+                    trader.setInteractionCount(itemCount);
+                    trader.sellToTrader(reqItem);
+                    setPlayerInventory();
+                    setTraderInventory();
 
-            }
-            catch (NumberFormatException E) {
-                count.setText("Incorrect Format");
-            }
-            catch (TradeImpossibleException e2) {
-                new ErrorWindow(e2.getMessage());
+                } catch (NumberFormatException E) {
+                    count.setText("Incorrect Format");
+                } catch (TradeImpossibleException e2) {
+                    new ErrorWindow(e2.getMessage());
+                }
             }
         }
     }
@@ -87,17 +86,10 @@ public class TraderWindow extends JFrame {
         setSize(700, 200);
         setResizable(false);
         setLayout(new FlowLayout());
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         playerInventory.setLayout(new GridLayout(this.player.getInventory().size(), 2));
-
-        for (int i = 0; i < player.getInventory().size(); i++) {
-            JButton inventoryItem = new JButton(this.player.getInventory().get(i).getName());
-            inventoryItem.addActionListener(new SellingListener());
-            playerInventory.add(inventoryItem);
-            JButton inventoryItemCount = new JButton(String.valueOf(this.player.getInventoryCount().get(i)));
-            playerInventory.add(inventoryItemCount);
-        }
+        setPlayerInventory();
         add(playerInventory);
 
         JPanel centralPanel = new JPanel(new BorderLayout());
@@ -110,15 +102,7 @@ public class TraderWindow extends JFrame {
         add(centralPanel);
 
         traderInventory.setLayout(new GridLayout(trader.getInventory().size(), 2));
-
-        for (int i = 0; i < trader.getInventory().size(); i++) {
-            JButton inventoryItem = new JButton(trader.getInventory().get(i).getName());
-            inventoryItem.addActionListener(new BuyingListener());
-            traderInventory.add(inventoryItem);
-            JButton traderInventoryCount = new JButton(String.valueOf(trader.getInventoryCount().get(i)));
-            traderInventory.add(traderInventoryCount);
-        }
-
+        setTraderInventory();
         add(traderInventory);
 
         setVisible(true);
